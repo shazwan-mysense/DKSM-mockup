@@ -1,0 +1,278 @@
+@import 'tailwindcss';
+
+/* ------------------------------------------------------------------ */
+/* Self-hosted variable fonts (downloaded from Google Fonts, latin)    */
+/* ------------------------------------------------------------------ */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url('/fonts/manrope-var-latin.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/inter-var-latin.woff2') format('woff2');
+}
+
+/* ------------------------------------------------------------------ */
+/* Design tokens — DKSM engineering palette                            */
+/* ------------------------------------------------------------------ */
+@theme {
+  --color-brand: #d71920; /* primary red — light backgrounds */
+  --color-brand-bright: #ff1827; /* sampled from the supplied DKSM logo */
+  --color-brand-deep: #8f161b;
+  --color-maroon: #351a1d;
+  --color-ink: #151719; /* charcoal */
+  --color-graphite: #25282b;
+  --color-steel: #5d646c; /* darkened from client-suggested #6C737A to pass WCAG AA on paper */
+  --color-mist: #e8e9ea;
+  --color-paper: #f7f5f1;
+  --color-line: #dedbd4; /* hairline on paper */
+  --color-line-dark: rgba(255, 255, 255, 0.1); /* hairline on ink */
+
+  --font-display: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+
+  --text-h1: clamp(2.1rem, 1.2rem + 4vw, 3.9rem);
+  --text-h2: clamp(1.6rem, 1.1rem + 2.2vw, 2.6rem);
+  --text-h3: clamp(1.15rem, 1rem + 0.8vw, 1.5rem);
+}
+
+/* ------------------------------------------------------------------ */
+/* Base                                                                */
+/* ------------------------------------------------------------------ */
+html {
+  scroll-behavior: smooth;
+}
+body {
+  @apply bg-paper font-body text-ink antialiased;
+  font-size: 16px;
+  line-height: 1.65;
+}
+::selection {
+  background: var(--color-brand);
+  color: #fff;
+}
+:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+}
+img {
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  @apply font-display;
+  letter-spacing: -0.015em;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+/* ------------------------------------------------------------------ */
+/* Shared building blocks                                              */
+/* ------------------------------------------------------------------ */
+.shell {
+  @apply mx-auto w-full max-w-[76rem] px-5 sm:px-8 lg:px-10;
+}
+
+/* small supporting label — quiet, human, no caps or tracking */
+@layer components {
+  .tech-label {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+}
+
+/* engineering hairline frame around sections */
+.rule-t {
+  @apply border-t border-line;
+}
+.dark-rule-t {
+  border-top: 1px solid var(--color-line-dark);
+}
+
+/* blueprint-style grid texture for dark bands */
+.grid-lines {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+.grid-lines-light {
+  background-image:
+    linear-gradient(to right, rgba(21, 23, 25, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(21, 23, 25, 0.045) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* buttons — defined in the components layer so plain utilities can override */
+@layer components {
+  .btn-primary,
+  .btn-outline-dark,
+  .btn-outline-light {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 3px;
+    padding: 0.625rem 1.5rem;
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 600;
+    transition:
+      color 0.2s,
+      background-color 0.2s,
+      border-color 0.2s;
+  }
+  .btn-primary {
+    background: var(--color-brand);
+    color: #fff;
+  }
+  .btn-primary:hover {
+    background: var(--color-brand-deep);
+  }
+  .btn-outline-dark {
+    border: 1px solid color-mix(in srgb, var(--color-ink) 25%, transparent);
+    color: var(--color-ink);
+  }
+  .btn-outline-dark:hover {
+    border-color: var(--color-ink);
+    background: var(--color-ink);
+    color: #fff;
+  }
+  .btn-outline-light {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #fff;
+  }
+  .btn-outline-light:hover {
+    border-color: #fff;
+    background: #fff;
+    color: var(--color-ink);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Scroll-reveal primitives (activated by useInView adding .is-in)     */
+/* ------------------------------------------------------------------ */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-28px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.97);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.is-in .reveal,
+.is-in.reveal,
+.is-in .reveal-left,
+.is-in.reveal-left,
+.is-in .reveal-scale,
+.is-in.reveal-scale {
+  opacity: 1;
+  transform: none;
+}
+
+/* red measurement line that draws in */
+.draw-line {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s;
+}
+.is-in .draw-line,
+.is-in.draw-line {
+  transform: scaleX(1);
+}
+
+/* hero entrance (page load, not scroll) */
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.hero-rise {
+  animation: hero-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes hero-pan {
+  from {
+    transform: scale(1.06) translateY(-0.8%);
+  }
+  to {
+    transform: scale(1) translateY(0.8%);
+  }
+}
+.hero-pan {
+  animation: hero-pan 14s ease-out both;
+}
+
+@keyframes scroll-cue {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateY(7px);
+    opacity: 0.4;
+  }
+}
+.scroll-cue {
+  animation: scroll-cue 2.2s ease-in-out infinite;
+}
+
+/* ------------------------------------------------------------------ */
+/* Reduced motion — kill all non-essential animation                   */
+/* ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal,
+  .reveal-left,
+  .reveal-scale,
+  .draw-line {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .hero-rise,
+  .hero-pan,
+  .scroll-cue {
+    animation: none !important;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
