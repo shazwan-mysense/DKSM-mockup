@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { asset, assetSrcSet } from '../lib/asset'
 import { usePageMeta } from '../lib/meta'
 import { useInView } from '../lib/motion'
 import { company, serviceRegion, strengths } from '../data/company'
@@ -18,8 +19,8 @@ function Hero() {
     <section className="relative flex min-h-[92svh] flex-col bg-ink pt-[68px] text-white">
       <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
         <img
-          src="/images/backgrounds/hero-home.webp"
-          srcSet="/images/backgrounds/hero-home-sm.webp 960w, /images/backgrounds/hero-home.webp 1920w"
+          src={asset('/images/backgrounds/hero-home.webp')}
+          srcSet={assetSrcSet('/images/backgrounds/hero-home.webp')}
           sizes="100vw"
           alt=""
           className="hero-pan h-full w-full object-cover opacity-50"
@@ -230,7 +231,7 @@ function Industries() {
               className={`group reveal-scale relative overflow-hidden rounded-[4px] ${spanClass(ind.span)}`}
             >
               <img
-                src={ind.image}
+                src={asset(ind.image)}
                 alt={ind.imageAlt}
                 loading="lazy"
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"

@@ -1,4 +1,5 @@
 import { credentials, credentialsDisclaimer } from '../data/credentials'
+import { asset } from '../lib/asset'
 
 /**
  * Restrained logo wall: consistent tile sizing, quiet borders, no
@@ -15,7 +16,7 @@ export default function CredentialWall({ limit }: { limit?: number }) {
             className={`group relative flex h-28 items-center justify-center p-5 ${c.darkAsset ? 'bg-[#0b0b0c]' : 'bg-white'}`}
           >
             <img
-              src={c.image}
+              src={asset(c.image)}
               alt={`${c.org} — ${c.category.toLowerCase()}`}
               loading="lazy"
               className="max-h-full max-w-full object-contain grayscale-[35%] transition-all duration-300 group-hover:grayscale-0"

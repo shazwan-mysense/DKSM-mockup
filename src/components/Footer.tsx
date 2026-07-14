@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { asset } from '../lib/asset'
 import { company, contact, serviceRegion } from '../data/company'
 import { services } from '../data/services'
 
@@ -7,7 +8,7 @@ export default function Footer() {
     <footer className="bg-ink text-white">
       <div className="shell grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
         <div>
-          <img src="/images/brand/dksm-logo.png" alt="DKSM Group" className="h-14 w-auto" />
+          <img src={asset('/images/brand/dksm-logo.png')} alt="DKSM Group" className="h-14 w-auto" />
           <p className="mt-5 max-w-sm text-[14.5px] leading-relaxed text-white/60">
             {company.shortDescription}
           </p>

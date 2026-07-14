@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef } from 'react'
 import type { GalleryItem } from '../data/projects'
+import { asset } from '../lib/asset'
 import { trapTabKey } from '../lib/focus'
 
 /**
@@ -72,7 +73,7 @@ export default function Lightbox({
       </div>
 
       <div className="relative flex flex-1 items-center justify-center px-4 pb-6 sm:px-16" onClick={(e) => e.stopPropagation()}>
-        <img src={item.image} alt={item.caption} className="max-h-full max-w-full rounded-[3px] object-contain" />
+        <img src={asset(item.image)} alt={item.caption} className="max-h-full max-w-full rounded-[3px] object-contain" />
         <button
           type="button"
           onClick={prev}

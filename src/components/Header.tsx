@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
+import { asset } from '../lib/asset'
 import { trapTabKey } from '../lib/focus'
 
 const NAV = [
@@ -62,7 +63,7 @@ export default function Header() {
     >
       <div className="shell flex h-[68px] items-center justify-between gap-6">
         <Link to="/" className="flex shrink-0 items-center gap-3" aria-label="DKSM Group — home">
-          <img src="/images/brand/dksm-logo.png" alt="DKSM Group" className="h-12 w-auto sm:h-14" />
+          <img src={asset('/images/brand/dksm-logo.png')} alt="DKSM Group" className="h-12 w-auto sm:h-14" />
           <span className="tech-label mt-1 hidden text-white/60 min-[1160px]:block">
             MEP &amp; Fire Protection
           </span>
@@ -105,7 +106,7 @@ export default function Header() {
         onKeyDown={(e) => trapTabKey(e, e.currentTarget)}
       >
         <div className="shell flex h-[68px] items-center justify-between">
-          <img src="/images/brand/dksm-logo.png" alt="DKSM Group" className="h-12 w-auto" />
+          <img src={asset('/images/brand/dksm-logo.png')} alt="DKSM Group" className="h-12 w-auto" />
           <button
             ref={closeBtn}
             type="button"

@@ -1,3 +1,4 @@
+import { asset } from '../lib/asset'
 import { useBreadcrumbSchema, usePageMeta } from '../lib/meta'
 import { useInView } from '../lib/motion'
 import { approach, company, missionVision, timeline } from '../data/company'
@@ -243,7 +244,7 @@ function Credentials() {
                 {items.map((c) => (
                   <li key={c.id} className="flex items-center gap-5 bg-white p-5">
                     <span className={`flex h-16 w-20 shrink-0 items-center justify-center rounded-[3px] border border-line p-2 ${c.darkAsset ? 'bg-[#0b0b0c]' : 'bg-white'}`}>
-                      <img src={c.image} alt="" loading="lazy" className="max-h-full max-w-full object-contain" />
+                      <img src={asset(c.image)} alt="" loading="lazy" className="max-h-full max-w-full object-contain" />
                     </span>
                     <div>
                       <p className="font-display text-[14.5px] font-bold leading-snug text-ink">{c.name}</p>

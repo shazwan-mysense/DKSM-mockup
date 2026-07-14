@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
+import { asset, assetSrcSet } from '../lib/asset'
 import { useInView } from '../lib/motion'
 
 /* ------------------------------------------------------------------ */
@@ -24,7 +25,7 @@ export function SmartImage({
   return (
     <div className={`overflow-hidden ${className}`} style={ratio ? { aspectRatio: ratio } : undefined}>
       <img
-        src={src}
+        src={asset(src)}
         alt={alt}
         loading={priority ? 'eager' : 'lazy'}
         decoding={priority ? 'sync' : 'async'}
@@ -94,8 +95,8 @@ export function PageHero({
     <section className="relative flex min-h-[52vh] items-end bg-ink pt-[68px] text-white">
       <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
         <img
-          src={image}
-          srcSet={`${image.replace('.webp', '-sm.webp')} 960w, ${image} 1920w`}
+          src={asset(image)}
+          srcSet={assetSrcSet(image)}
           sizes="100vw"
           alt={imageAlt}
           className="h-full w-full object-cover opacity-45"
@@ -170,8 +171,8 @@ export function CTABlock({
     <section className="relative overflow-hidden bg-ink text-white">
       <div className="absolute inset-0" aria-hidden="true">
         <img
-          src="/images/backgrounds/cta-dark.webp"
-          srcSet="/images/backgrounds/cta-dark-sm.webp 960w, /images/backgrounds/cta-dark.webp 1600w"
+          src={asset('/images/backgrounds/cta-dark.webp')}
+          srcSet={assetSrcSet('/images/backgrounds/cta-dark.webp', 1600)}
           sizes="100vw"
           alt=""
           className="h-full w-full object-cover opacity-30"
