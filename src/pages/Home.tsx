@@ -188,12 +188,19 @@ function ServicesOverview() {
           {/* four supporting services */}
           <div className="mt-px grid gap-px overflow-hidden rounded-[4px] border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
             {rest.map((s) => (
-              <Link key={s.id} to={`/services#${s.id}`} className="group reveal flex flex-col bg-white p-6">
-                <SmartImage src={s.image} alt="" className="h-14 w-full rounded-[3px]" imgClassName="transition-transform duration-500 group-hover:scale-110" />
-                <h3 className="mt-4 font-display text-[17px] font-bold text-ink transition-colors group-hover:text-brand">
-                  {s.title}
-                </h3>
-                <p className="mt-2.5 flex-1 text-[13.5px] leading-relaxed text-steel">{s.short}</p>
+              <Link key={s.id} to={`/services#${s.id}`} className="group reveal flex flex-col bg-white">
+                <SmartImage
+                  src={s.image}
+                  alt=""
+                  ratio="16/9"
+                  imgClassName="transition-transform duration-700 group-hover:scale-[1.04]"
+                />
+                <div className="flex flex-1 flex-col p-6">
+                  <h3 className="font-display text-[17px] font-bold text-ink transition-colors group-hover:text-brand">
+                    {s.title}
+                  </h3>
+                  <p className="mt-2.5 flex-1 text-[13.5px] leading-relaxed text-steel">{s.short}</p>
+                </div>
               </Link>
             ))}
           </div>
