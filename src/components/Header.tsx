@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { asset } from '../lib/asset'
 import { trapTabKey } from '../lib/focus'
@@ -57,8 +58,8 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-300 ${
-        scrolled ? 'border-white/10 bg-ink/95 shadow-lg shadow-black/20 backdrop-blur' : 'border-transparent bg-ink'
+      className={`fixed inset-x-0 top-0 z-50 border-b bg-ink transition-all duration-300 ${
+        scrolled ? 'border-white/10 shadow-lg shadow-black/20' : 'border-transparent'
       }`}
     >
       <div className="shell flex h-[68px] items-center justify-between gap-6">
@@ -94,10 +95,12 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Mobile menu — `invisible` removes it from the tab order and the
-          accessibility tree while closed */}
-      <div
-        className={`fixed inset-0 z-50 bg-ink transition-[opacity,visibility] duration-300 lg:hidden ${
+      {/* Mobile menu — portaled to <body> so no ancestor filter/transform can
+          re-anchor its fixed positioning; `invisible` removes it from the tab
+          order and the accessibility tree while closed */}
+      {createPortal(
+        <div
+        className={`fixed inset-0 z-[70] bg-ink transition-[opacity,visibility] duration-300 lg:hidden ${
           open ? 'visible opacity-100' : 'pointer-events-none invisible opacity-0'
         }`}
         role="dialog"
@@ -144,7 +147,9 @@ export default function Header() {
           </Link>
           <p className="tech-label mt-6 text-center text-white/60">Serving Malaysian industries since 1982</p>
         </nav>
-      </div>
+        </div>,
+        document.body,
+      )}
     </header>
   )
 }
