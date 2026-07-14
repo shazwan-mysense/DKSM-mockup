@@ -10,6 +10,11 @@ maintenance, technical training and authority approvals.
 > (see [Information requiring confirmation](#information-still-requiring-client-confirmation))
 > and the contact form has no backend connected yet.
 
+**Live preview:** https://shazwan-mysense.github.io/DKSM-mockup/
+(`main` = source code · `gh-pages` = deployed build; redeploy with
+`npm run build:pages`, copy `dist/index.html` to `dist/404.html`, and push
+`dist/` to the `gh-pages` branch)
+
 ## Pages
 
 | Route | Page |
