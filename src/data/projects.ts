@@ -1,16 +1,10 @@
 /**
- * Projects & gallery data.
+ * Projects, clients and gallery data.
  *
- * IMPORTANT: No confirmed DKSM project references were supplied yet
- * (client checklist: photos "need to retake", projects "OK" but details
- * pending). Every project card is therefore a clearly-labelled
- * placeholder, and gallery photography is representative stock imagery —
- * flagged as such in the UI.
- *
- * TODO: Replace placeholder projects and representative imagery with
- * confirmed DKSM project information and photography before launch.
- * Client direction (14 July 2026): healthcare and energy sectors removed;
- * no year-based grouping — projects stay grouped by sector.
+ * Project references, photos and the client list below are drawn from
+ * DKSM's existing published website (dksm.com.my) — real, client-published
+ * track record. Per client direction (14 July 2026): projects are grouped
+ * by sector with no year separation, and clients are shown as logos only.
  */
 
 export type Sector =
@@ -30,79 +24,134 @@ export const sectors: Sector[] = [
 
 export interface ProjectCard {
   id: string
+  name: string
   sector: Sector
+  location: string
+  owner: string
+  facility: string
   scope: string
-  services: string[]
   image: string
   imageAlt: string
-  /** All placeholder cards render with a visible "awaiting confirmation" badge. */
-  placeholder: boolean
 }
 
+/** Track record published by DKSM — most recent and notable first. */
 export const projects: ProjectCard[] = [
   {
-    id: 'proj-industrial',
+    id: 'press-metal',
+    name: 'Press Metal Manufacturing Plant',
     sector: 'Industrial',
-    scope: 'Fire-protection and MEP works for a manufacturing facility',
-    services: ['Design & Build', 'Installation & Commissioning', 'Maintenance'],
-    image: '/images/projects/gallery-industrial.webp',
-    imageAlt: 'Representative image — manufacturing facility',
-    placeholder: true,
+    location: 'Klang, Selangor',
+    owner: 'Press Metal Bhd',
+    facility: 'Aluminium manufacturing facility',
+    scope: 'Fire and electrical engineering',
+    image: '/images/projects/real-press-metal.webp',
+    imageAlt: 'Press Metal manufacturing plant in Klang',
   },
   {
-    id: 'proj-commercial',
+    id: 'volvo',
+    name: 'Volvo Manufacturing Plant',
+    sector: 'Industrial',
+    location: 'Shah Alam, Selangor',
+    owner: 'Volvo Car Manufacturing Malaysia Sdn Bhd',
+    facility: 'Car manufacturing plant',
+    scope: 'Fire and electrical engineering',
+    image: '/images/projects/real-volvo.webp',
+    imageAlt: 'Volvo car manufacturing plant in Shah Alam',
+  },
+  {
+    id: 'decathlon',
+    name: 'Decathlon Shah Alam',
     sector: 'Commercial',
-    scope: 'Building services for a commercial development',
-    services: ['Installation & Commissioning', 'Authority Approvals'],
-    image: '/images/projects/gallery-commercial.webp',
-    imageAlt: 'Representative image — commercial building',
-    placeholder: true,
+    location: 'Shah Alam, Selangor',
+    owner: 'Bulan Anggun Sdn Bhd & Decathlon (M) Sdn Bhd',
+    facility: 'Sports retail store',
+    scope: 'Fire engineering',
+    image: '/images/projects/real-decathlon.webp',
+    imageAlt: 'Decathlon retail store in Shah Alam',
   },
   {
-    id: 'proj-education',
+    id: 'ukm-bangi',
+    name: 'UKM Bangi',
     sector: 'Education',
-    scope: 'System upgrading works for an educational campus',
-    services: ['Maintenance', 'Authority Approvals'],
-    image: '/images/projects/gallery-education.webp',
-    imageAlt: 'Representative image — educational institution',
-    placeholder: true,
+    location: 'Bangi, Selangor',
+    owner: 'Universiti Kebangsaan Malaysia',
+    facility: 'Higher-education campus',
+    scope: 'Fire engineering',
+    image: '/images/projects/real-ukm-bangi.webp',
+    imageAlt: 'Universiti Kebangsaan Malaysia campus in Bangi',
   },
   {
-    id: 'proj-infra',
+    id: 'cenviro',
+    name: 'Cenviro Waste Management Plant',
     sector: 'Infrastructure',
-    scope: 'Engineering services for a transportation facility',
-    services: ['Design & Build', 'Installation & Commissioning'],
-    image: '/images/projects/gallery-infra.webp',
-    imageAlt: 'Representative image — transport infrastructure',
-    placeholder: true,
+    location: 'Port Dickson, Negeri Sembilan',
+    owner: 'Kualiti Alam Sdn Bhd',
+    facility: 'Waste-management centre',
+    scope: 'Fire engineering',
+    image: '/images/projects/real-cenviro.webp',
+    imageAlt: 'Cenviro waste management plant in Port Dickson',
   },
   {
-    id: 'proj-data',
-    sector: 'Data centres',
-    scope: 'Suppression system works for a critical facility',
-    services: ['Design & Build', 'Maintenance'],
-    image: '/images/projects/gallery-data.webp',
-    imageAlt: 'Representative image — data centre',
-    placeholder: true,
+    id: 'khind',
+    name: 'Khind Manufacturing Plant',
+    sector: 'Industrial',
+    location: 'Sekinchan, Selangor',
+    owner: 'Khind-Mistral Industries Sdn Bhd',
+    facility: 'Electrical & electronics manufacturing plant',
+    scope: 'Fire engineering',
+    image: '/images/projects/real-khind.webp',
+    imageAlt: 'Khind manufacturing plant in Sekinchan',
+  },
+  {
+    id: 'ajinomoto',
+    name: 'Ajinomoto Manufacturing Plant',
+    sector: 'Industrial',
+    location: 'Kuchai Lama, Kuala Lumpur',
+    owner: 'Ajinomoto Sdn Bhd',
+    facility: 'Food-seasoning production facility',
+    scope: 'Fire engineering',
+    image: '/images/projects/real-ajinomoto.webp',
+    imageAlt: 'Ajinomoto manufacturing plant in Kuala Lumpur',
+  },
+  {
+    id: 'yara',
+    name: 'Yara Port Klang',
+    sector: 'Industrial',
+    location: 'Port Klang, Selangor',
+    owner: 'Yara International (M) Sdn Bhd',
+    facility: 'Mineral fertiliser facility',
+    scope: 'Fire engineering',
+    image: '/images/projects/real-yara.webp',
+    imageAlt: 'Yara facility at Port Klang',
+  },
+  {
+    id: 'airfoil',
+    name: 'Airfoil Service Centre',
+    sector: 'Industrial',
+    location: 'Kota Damansara, Selangor',
+    owner: 'Airfoil Services Sdn Bhd',
+    facility: 'Aircraft engine centre',
+    scope: 'Fire engineering',
+    image: '/images/projects/real-airfoil.webp',
+    imageAlt: 'Airfoil Services aircraft engine centre',
+  },
+  {
+    id: 'wei-tat',
+    name: 'Wei Tat Feedmill',
+    sector: 'Industrial',
+    location: 'Port Klang, Selangor',
+    owner: 'Wei Tat Poultry Farm Sdn Bhd',
+    facility: 'Animal feedmill plant',
+    scope: 'Fire engineering',
+    image: '/images/projects/real-wei-tat.webp',
+    imageAlt: 'Wei Tat feedmill plant at Port Klang',
   },
 ]
 
-/** Featured case study — structure ready, content pending confirmation. */
-export const featuredCaseStudy = {
-  placeholder: true,
-  label: 'Project details awaiting client confirmation',
-  sector: 'Industrial' as Sector,
-  title: 'Featured project',
-  challenge:
-    'The challenge summary for a confirmed DKSM project will appear here — the operating constraints, compliance requirements and site conditions the team had to work within.',
-  scope:
-    'DKSM’s appointed scope — disciplines covered, systems delivered and the project stages handled by the team.',
-  solution:
-    'How the works were engineered, coordinated and delivered, including testing, commissioning and authority inspection.',
-  systems: ['To be confirmed'],
-  outcome: 'Measured outcome and handover result, as confirmed by the client.',
-  image: '/images/projects/featured.webp',
-  imageAlt: 'Representative image — industrial facility interior',
+/** Featured project shown on the homepage and the Projects page. */
+export const featuredProject = {
+  ...projects[0],
+  text: 'One of the group’s most recent major deliveries — fire and electrical engineering for Press Metal’s aluminium manufacturing plant in Klang, taken through design coordination, installation and commissioning.',
 }
 
 /** Gallery of representative imagery (stock), clearly labelled in the UI. */
@@ -125,14 +174,11 @@ export const gallery: GalleryItem[] = [
 ]
 
 export const galleryDisclaimer =
-  'Representative imagery shown. Actual DKSM project photography will replace these images once supplied.'
+  'Representative imagery shown in this gallery. Project photographs above are from DKSM’s published track record.'
 
 /**
- * Client logo wall — client direction (14 July 2026): show logos only, no
- * individual company write-ups; famous/major client logos are sufficient.
- * Logos are being compiled by the client (Tikky). Add entries as
- * { name, image } once official files are supplied — tiles render
- * automatically; until then the section shows labelled placeholder tiles.
+ * Client logo wall — logos only, per client direction. Sourced from the
+ * client list published on DKSM's existing website.
  */
 export interface ClientLogo {
   name: string
@@ -140,6 +186,38 @@ export interface ClientLogo {
 }
 
 export const clientLogos: ClientLogo[] = [
-  // TODO: Populate with client-supplied logo files, e.g.:
-  // { name: 'Client name', image: '/images/clients/client-name.png' },
+  { name: 'PETRONAS', image: '/images/clients/petronas.png' },
+  { name: 'Genting Malaysia', image: '/images/clients/genting.png' },
+  { name: 'Toyota', image: '/images/clients/toyota.png' },
+  { name: 'Volvo', image: '/images/clients/volvo.png' },
+  { name: 'Nissan', image: '/images/clients/nissan.png' },
+  { name: 'Yamaha', image: '/images/clients/yamaha.png' },
+  { name: 'MRT Corp', image: '/images/clients/mrt-corp.png' },
+  { name: 'Press Metal', image: '/images/clients/press-metal.png' },
+  { name: 'Kossan', image: '/images/clients/kossan.png' },
+  { name: 'DRB-HICOM', image: '/images/clients/drb-hicom.png' },
+  { name: 'HICOM', image: '/images/clients/hicom.png' },
+  { name: 'Decathlon', image: '/images/clients/decathlon.png' },
+  { name: 'Louis Vuitton', image: '/images/clients/louis-vuitton.png' },
+  { name: 'British American Tobacco', image: '/images/clients/british-american.png' },
+  { name: 'Al Rajhi Bank', image: '/images/clients/al-rajhi.png' },
+  { name: 'Linde', image: '/images/clients/linde.png' },
+  { name: 'Yara', image: '/images/clients/yara.png' },
+  { name: 'Autoliv', image: '/images/clients/autoliv.png' },
+  { name: 'AIROD', image: '/images/clients/airod.png' },
+  { name: 'Universiti Kebangsaan Malaysia', image: '/images/clients/ukm.png' },
+  { name: 'Eu Yan Sang', image: '/images/clients/eu-yan-sang.png' },
+  { name: 'Khind', image: '/images/clients/khind.png' },
+  { name: 'Joven', image: '/images/clients/joven.png' },
+  { name: 'Bata', image: '/images/clients/bata.png' },
+  { name: 'Eco-Shop', image: '/images/clients/eco-shop.png' },
+  { name: 'Cenviro', image: '/images/clients/cenviro.png' },
+  { name: 'Mycron Steel', image: '/images/clients/mycron.png' },
+  { name: 'Leon Fuat', image: '/images/clients/leon-fuat.png' },
+  { name: 'Synergy Pipes & Parts', image: '/images/clients/synergy.png' },
+  { name: 'Kolej WIT', image: '/images/clients/kolej-wit.png' },
+  { name: 'Freight Management', image: '/images/clients/freight-management.png' },
+  { name: 'SKK', image: '/images/clients/skk.png' },
+  { name: 'Seamaster', image: '/images/clients/seamaster.png' },
+  { name: 'Ukai', image: '/images/clients/ukai.png' },
 ]

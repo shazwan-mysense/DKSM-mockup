@@ -6,7 +6,7 @@ import { useInView } from '../lib/motion'
 import { announcement, company, serviceRegion, strengths } from '../data/company'
 import { services } from '../data/services'
 import { industries } from '../data/industries'
-import { featuredCaseStudy } from '../data/projects'
+import { featuredProject } from '../data/projects'
 import StatBand from '../components/StatBand'
 import ProcessFlow from '../components/ProcessFlow'
 import CredentialWall from '../components/CredentialWall'
@@ -293,45 +293,32 @@ function Industries() {
 /* ------------------------------------------------------------------ */
 function FeaturedProject() {
   const ref = useInView<HTMLDivElement>()
-  const cs = featuredCaseStudy
+  const fp = featuredProject
   return (
     <section className="rule-t bg-white py-20 md:py-28">
       <div ref={ref} className="shell grid gap-10 lg:grid-cols-[1.25fr_1fr] lg:gap-14">
         <div className="reveal-scale relative overflow-hidden rounded-[4px]">
-          <SmartImage src={cs.image} alt={cs.imageAlt} ratio="16/11" />
-          {cs.placeholder && (
-            <p className="tech-label absolute left-4 top-4 rounded-[3px] bg-ink/85 px-3 py-2 text-amber-300">
-              {cs.label}
-            </p>
-          )}
+          <SmartImage src={fp.image} alt={fp.imageAlt} ratio="16/11" />
+          <span className="tech-label absolute left-4 top-4 bg-ink/85 px-2.5 py-1.5 text-white">{fp.sector}</span>
         </div>
         <div className="flex flex-col justify-center">
-          <SectionHeading eyebrow="Featured project" title="A closer look at how DKSM delivers" />
+          <SectionHeading eyebrow="Featured project" title={fp.name} lead={fp.text} />
           <dl className="mt-8 space-y-5">
             <div className="reveal">
-              <dt className="tech-label text-steel">Sector</dt>
-              <dd className="mt-1 font-display text-[15px] font-semibold text-ink">{cs.sector}</dd>
+              <dt className="tech-label text-steel">Owner</dt>
+              <dd className="mt-1 font-display text-[15px] font-semibold text-ink">{fp.owner}</dd>
             </div>
             <div className="reveal">
-              <dt className="tech-label text-steel">Scope of work</dt>
-              <dd className="mt-1 text-[14.5px] leading-relaxed text-graphite/85">{cs.scope}</dd>
+              <dt className="tech-label text-steel">Location</dt>
+              <dd className="mt-1 text-[14.5px] leading-relaxed text-graphite/85">{fp.location}</dd>
             </div>
             <div className="reveal">
-              <dt className="tech-label text-steel">Services provided</dt>
-              <dd className="mt-2 flex flex-wrap gap-2">
-                {['Design & Build', 'Installation & Commissioning', 'Maintenance'].map((s) => (
-                  <span key={s} className="rounded-[3px] border border-line bg-paper px-2.5 py-1 text-[12.5px] text-graphite">
-                    {s}
-                  </span>
-                ))}
-              </dd>
+              <dt className="tech-label text-steel">Work scope</dt>
+              <dd className="mt-1 text-[14.5px] leading-relaxed text-graphite/85">{fp.scope}</dd>
             </div>
           </dl>
-          <p className="reveal mt-6 text-[13px] leading-relaxed text-steel">
-            Confirmed project details and photography will be published here once provided by DKSM.
-          </p>
           <Link to="/projects" className="btn-outline-dark reveal mt-7 self-start">
-            Projects &amp; Industries
+            See the Track Record
           </Link>
         </div>
       </div>

@@ -68,8 +68,13 @@ function ContactDetails() {
       </div>
       <div className="reveal">
         <h2 className="tech-label text-brand">Email &amp; WhatsApp</h2>
-        <p className="mt-3 text-[14px] leading-relaxed text-steel">
-          To be confirmed — enquiries are best sent through the form for now.
+        <p className="mt-3 space-y-1 text-[15px] leading-relaxed text-graphite">
+          <a href={`mailto:${contact.email}`} className="block underline decoration-line underline-offset-4 hover:text-brand">
+            {contact.email}
+          </a>
+          <a href={contact.whatsapp ?? '#'} className="block underline decoration-line underline-offset-4 hover:text-brand">
+            WhatsApp us
+          </a>
         </p>
       </div>
       <div className="reveal">

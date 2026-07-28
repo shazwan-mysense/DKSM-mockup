@@ -1,9 +1,12 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { asset } from '../lib/asset'
 import { useBreadcrumbSchema, usePageMeta } from '../lib/meta'
 import { useInView } from '../lib/motion'
 import { approach, company, missionVision, timeline } from '../data/company'
 import { credentialCategories, credentials, credentialsDisclaimer } from '../data/credentials'
+import { team } from '../data/team'
+import type { TeamMember } from '../data/team'
 import { Breadcrumbs, CTABlock, PageHero, SectionHeading, SmartImage } from '../components/primitives'
 
 const BREADCRUMB = [
@@ -17,6 +20,12 @@ function Story() {
     <section className="bg-paper py-20 md:py-28">
       <div ref={ref} className="shell grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
         <div>
+          <img
+            src={asset('/images/brand/dksm-logo-official.png')}
+            alt="DKSM Group official logo"
+            className="mb-7 h-14 w-auto"
+            loading="lazy"
+          />
           <SectionHeading
             eyebrow="Our story"
             title="Built project by project since 1982"
@@ -30,6 +39,9 @@ function Story() {
               long-term servicing that keeps those systems dependable.
             </p>
           </div>
+          <p className="reveal mt-7 border-l-2 border-brand pl-5 font-display text-[19px] font-bold leading-snug text-ink">
+            “{company.slogan}”
+          </p>
         </div>
         <div className="reveal-scale flex flex-col gap-3">
           <SmartImage
@@ -65,8 +77,8 @@ function Timeline() {
       <div className="shell">
         <SectionHeading
           eyebrow="Milestones"
-          title="A timeline still being written"
-          lead="Confirmed milestones from the group’s history — further entries will be added as DKSM confirms them."
+          title="Milestones since 1982"
+          lead="From a fire-prevention supply business to the DKSM Group of today — the group’s published milestones."
         />
         <ol ref={ref} className="relative mt-14 space-y-10 border-l border-line pl-8 md:space-y-12">
           {timeline.map((t) => (
@@ -153,7 +165,7 @@ function SafetyQuality() {
   const ref = useInView<HTMLDivElement>()
   const items = [
     ['Safe work practices', 'Method statements, supervision and proper PPE on every site — safety is planned, not assumed.'],
-    ['Quality assurance', 'Staged inspections and workmanship standards applied through installation, not just at handover.'],
+    ['Quality assurance', 'Quality management certified to ISO 9001 since 2000 — staged inspections and workmanship standards applied through installation.'],
     ['Malaysian requirements', 'Work carried out to the codes, standards and authority requirements relevant to each installation.'],
     ['Proper documentation', 'As-builts, test records and commissioning reports assembled as the work proceeds.'],
     ['Testing & commissioning', 'Every system proven against design intent through structured testing before handover.'],
@@ -192,17 +204,89 @@ function SafetyQuality() {
   )
 }
 
-function Team() {
-  const ref = useInView<HTMLDivElement>()
+function Leadership() {
+  const [openId, setOpenId] = useState<string | null>(null)
+  const ref = useInView<HTMLDivElement>(0.03)
+  const tiers: TeamMember['tier'][] = ['Top management', 'Key management']
+
   return (
     <section className="rule-t bg-paper py-20 md:py-28">
       <div className="shell" ref={ref}>
         <SectionHeading
-          eyebrow="The people"
-          title="Engineers, supervisors and technicians — on site"
-          lead="DKSM’s work is carried by its field teams: the engineers who plan it, the supervisors who run it, and the technicians who keep systems serviced years after commissioning."
+          eyebrow="The people behind DKSM Group"
+          title="Led by the people who built it"
+          lead="The group’s leadership pairs founding experience in fire protection with decades of construction, operations and servicing practice."
         />
-        <div className="mt-12 grid gap-3 sm:grid-cols-3">
+
+        {tiers.map((tier) => (
+          <div key={tier} className="mt-10">
+            <h3 className="tech-label text-brand">{tier}</h3>
+            <div className="mt-4 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+              {team
+                .filter((m) => m.tier === tier)
+                .map((m) => {
+                  const open = openId === m.id
+                  return (
+                    <article
+                      key={m.id}
+                      className={`reveal flex flex-col rounded-[4px] border border-line bg-white p-7 ${open ? 'md:col-span-2 lg:col-span-3' : ''}`}
+                    >
+                      <div className="flex items-center gap-5">
+                        <img
+                          src={asset(m.image)}
+                          alt={`${m.name}, ${m.role}`}
+                          loading="lazy"
+                          className="h-20 w-20 shrink-0 rounded-full border border-line bg-white object-cover"
+                        />
+                        <div>
+                          <h4 className="font-display text-[17px] font-bold leading-snug text-ink">{m.name}</h4>
+                          <p className="tech-label mt-0.5 text-brand">{m.role}</p>
+                        </div>
+                      </div>
+                      <p className="mt-4 flex-1 text-[13.5px] leading-relaxed text-steel">{m.summary}</p>
+                      {open && (
+                        <div className="mt-5 max-w-3xl space-y-4 border-t border-line pt-5 text-[14px] leading-relaxed text-graphite/90">
+                          {m.bio.map((para) => (
+                            <p key={para.slice(0, 24)}>{para}</p>
+                          ))}
+                          {m.appointments && (
+                            <ul className="space-y-1.5 pt-1 text-[13px] leading-relaxed text-steel">
+                              {m.appointments.map((r) => (
+                                <li key={r} className="flex gap-2.5">
+                                  <span aria-hidden="true" className="mt-[7px] h-1.5 w-1.5 shrink-0 rotate-45 bg-brand" />
+                                  {r}
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
+                      )}
+                      <button
+                        type="button"
+                        onClick={() => setOpenId(open ? null : m.id)}
+                        aria-expanded={open}
+                        className="tech-label mt-5 flex min-h-10 items-center gap-2 self-start text-brand transition-colors hover:text-brand-deep"
+                      >
+                        {open ? 'Close' : `More about ${m.name.split(' ')[0]}`}
+                        <svg
+                          width="12"
+                          height="12"
+                          viewBox="0 0 16 16"
+                          fill="none"
+                          aria-hidden="true"
+                          className={`transition-transform duration-300 ${open ? 'rotate-45' : ''}`}
+                        >
+                          <path d="M8 2v12M2 8h12" stroke="currentColor" strokeWidth="1.6" />
+                        </svg>
+                      </button>
+                    </article>
+                  )
+                })}
+            </div>
+          </div>
+        ))}
+
+        <div className="mt-14 grid gap-3 sm:grid-cols-3">
           {[
             ['/images/people/team-drawings.webp', 'Engineers coordinating against the drawings before work begins'],
             ['/images/people/site-briefing.webp', 'Toolbox briefings keep every trade aligned on the day’s works'],
@@ -215,7 +299,7 @@ function Team() {
           ))}
         </div>
         <p className="mt-8 text-[12.5px] text-steel">
-          Representative imagery — photography of DKSM’s own teams will be added once supplied.
+          Field photography is representative — DKSM’s own site photography will be added once supplied.
         </p>
 
         {/* Careers announcement slot — client add-on request (14 July 2026).
@@ -304,7 +388,7 @@ export default function About() {
       <MissionValues />
       <HowWeWork />
       <SafetyQuality />
-      <Team />
+      <Leadership />
       <Credentials />
       <CTABlock
         heading="Get to know DKSM on your own project"

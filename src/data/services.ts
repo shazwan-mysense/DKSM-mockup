@@ -22,7 +22,7 @@ export const services: Service[] = [
     short:
       'End-to-end fire-protection and MEP design and build solutions, tailored to the specifications of each project — engineering, procurement, construction and commissioning handled in-house.',
     intro:
-      'For clients who want one responsible party from concept to handover, DKSM takes a project from requirement assessment through engineering design, procurement and construction to a tested, commissioned system.',
+      'For clients who want one responsible party from concept to handover, DKSM delivers full EPCC — engineering, procurement, construction and commissioning — taking a project from requirement assessment to a tested, handed-over system.',
     coverage: [
       'Requirement assessment and site studies',
       'Engineering coordination across MEP disciplines',

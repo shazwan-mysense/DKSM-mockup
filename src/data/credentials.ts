@@ -161,21 +161,21 @@ export const credentials: Credential[] = [
   },
   {
     id: 'power-brand',
-    name: 'Malaysia Power Brand 2016/2017',
+    name: 'Malaysia Power Brand',
     org: 'Asia Entrepreneur Alliance',
     category: 'Award',
     image: '/images/credentials/power-brand-2016.png',
     confirmed: false,
-    note: 'Award logo supplied in the client’s credentials folder; recipient entity and award title to be confirmed.',
+    note: 'Listed as 2015 on the company’s published milestone timeline; the supplied logo carries 2016/2017 — year to be confirmed.',
   },
   {
     id: 'scbea',
-    name: 'Sin Chew Business Excellence Awards 2017',
+    name: 'Sin Chew Business Excellence Award',
     org: 'Sin Chew Daily',
     category: 'Award',
     image: '/images/credentials/scbea-2017.png',
     confirmed: false,
-    note: 'Supplied 2017 Sin Chew feature reports a Service Excellence award to the group’s fire-protection business; wording to be confirmed.',
+    note: 'Listed as 2018 on the company’s published milestone timeline; the supplied press feature and logo carry 2017 — year to be confirmed.',
   },
 ]
 

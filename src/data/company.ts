@@ -10,14 +10,17 @@
  * values, do not delete the flags silently.
  */
 
-// TODO: Replace with the final production domain before launch.
-export const SITE_URL = 'https://www.dksm-group.example'
+// The group's existing domain — confirm it will carry the new site at launch.
+export const SITE_URL = 'https://dksm.com.my'
 
 export const company = {
   name: 'DKSM Group',
-  // TODO: Confirm registered legal entity name(s) with client before launch.
-  legalName: 'DKSM Group',
+  /** Registered entity, per the company's published website. */
+  legalName: 'DKSM Sdn Bhd',
+  formerName: 'Dyno Klang Fire Protection Engineering Sdn Bhd',
   foundedYear: 1982,
+  /** The group's published slogan. */
+  slogan: 'Powering your world with precision & expertise',
   tagline: 'Trusted Engineering Partner for Industrial & Infrastructure Projects',
   /**
    * Client direction (14 July 2026): fire protection comes before MEP —
@@ -27,8 +30,9 @@ export const company = {
     'One-stop solutions for fire-protection and Mechanical, Electrical & Plumbing requirements.',
   shortDescription:
     'DKSM Group delivers end-to-end fire-protection and MEP solutions — from design, supply and installation to maintenance, training and authority approvals.',
+  /** Adapted from the company profile on DKSM's published website. */
   introduction:
-    'DKSM Group was founded in 1982 and has since grown into one of Malaysia’s most established engineering solution providers. Specialising in fire protection and Mechanical, Electrical and Plumbing (MEP) systems, we serve clients across the industrial, commercial and infrastructure sectors with a full suite of in-house capabilities — from concept design through to handover and long-term maintenance.',
+    'DKSM Sdn Bhd, operating under the brand name DKSM Group (formerly Dyno Klang Fire Protection Engineering Sdn Bhd), was founded in 1982 and incorporated in 1999. The group has grown into a prominent fire-protection and MEP services contractor with extensive design-and-build experience — offering in-house engineering, procurement, construction and commissioning (EPCC), alongside operation, maintenance, advisory services and training.',
   /*
    * Client decision (14 July 2026): Dyno MEP Services (DMS) is an associate
    * company, not a subsidiary, and is intentionally NOT referenced on this
@@ -43,14 +47,11 @@ export const company = {
  */
 export const announcement: { text: string; linkLabel?: string; linkTo?: string } | null = null
 
-/**
- * Statistics from the client's current website.
- * TODO: Reconfirm all four figures with client before launch.
- */
+/** Statistics as published on DKSM's existing website. */
 export const stats = [
   { value: 40, suffix: '+', label: 'Years of industry experience' },
-  { value: 500, suffix: '+', label: 'Projects completed' },
-  { value: 300, suffix: '+', label: 'Clients served' },
+  { value: 2500, suffix: '+', label: 'Projects completed' },
+  { value: 500, suffix: '+', label: 'Clients served' },
   { value: 1982, suffix: '', label: 'Year established', static: true },
 ] as const
 
@@ -65,8 +66,9 @@ export const contact = {
   ],
   /** International format, as instructed by the client. */
   phone: '+60 16-837 8459',
-  email: null as string | null, // TODO: Confirm with client before launch.
-  whatsapp: null as string | null, // TODO: Confirm with client before launch.
+  /** As published on dksm.com.my. */
+  email: 'enquiry@dksm.com.my' as string | null,
+  whatsapp: 'https://wa.me/60168378459' as string | null,
   businessHours: [
     { days: 'Monday – Friday', hours: '8:00 am – 5:00 pm' },
     { days: 'Saturday', hours: '8:00 am – 1:00 pm' },
@@ -77,12 +79,12 @@ export const contact = {
 
 /**
  * Social channels — client direction: Facebook and LinkedIn only for DKSM
- * (IG/YouTube considered better suited to the B2C side).
- * TODO: Add the actual page URLs — icons render only once these are set.
+ * (IG/YouTube considered better suited to the B2C side). URLs from the
+ * company's published profiles.
  */
 export const socials = {
-  facebook: null as string | null,
-  linkedin: null as string | null,
+  facebook: 'https://www.facebook.com/dksmsb/' as string | null,
+  linkedin: 'https://www.linkedin.com/company/dksmsb' as string | null,
 }
 
 export const serviceRegion = 'Klang Valley and beyond'
@@ -149,78 +151,96 @@ export const strengths = [
   },
 ] as const
 
-/** Mission / vision / values — kept factual and practical. */
+/**
+ * Mission, vision and core values — verbatim from the company profile on
+ * DKSM's published website (client direction: "Remain as Co. Profile").
+ */
 export const missionVision = {
   mission:
-    'To deliver fire-protection and MEP systems that work as designed, comply with Malaysian requirements, and stay dependable throughout their service life.',
-  vision:
-    'To remain the engineering partner Malaysian industries rely on — for new projects, existing facilities, and everything in between.',
+    'To transform the world of engineering by building the best value-added services & empowering solutions, a sense of customization, environment, and safety.',
+  vision: 'To become World’s premier building services engineering provider.',
   values: [
-    {
-      title: 'Technical reliability',
-      text: 'Systems are engineered, installed and tested to perform — not just to pass handover.',
-    },
-    {
-      title: 'Safety',
-      text: 'Safe work practices on site and safe systems in operation are non-negotiable.',
-    },
-    {
-      title: 'Compliance',
-      text: 'Work is carried out to relevant Malaysian codes, standards and authority requirements.',
-    },
-    {
-      title: 'Accountability',
-      text: 'One responsible team from first site visit to final documentation.',
-    },
-    {
-      title: 'Practical problem-solving',
-      text: 'Recommendations are grounded in what a facility actually needs and can maintain.',
-    },
-    {
-      title: 'Long-term client support',
-      text: 'Relationships continue past commissioning — through servicing, training and advice.',
-    },
+    { title: 'Leadership', text: 'Management & teamwork!' },
+    { title: 'Performance', text: 'Results matter!' },
+    { title: 'Innovation', text: 'Always strive for better!' },
+    { title: 'Safety', text: 'Life’s a gift!' },
+    { title: 'Virtue', text: 'Basic morality!' },
+    { title: 'Compassion', text: 'Restore love & kindness back into community!' },
   ],
 }
 
 /**
- * Company timeline for the About page.
- * Only 1982 and 2019 are confirmed by supplied materials; the award years
- * are drawn from the supplied award logos and the 2017 Sin Chew feature.
- * Entries marked `placeholder: true` render as clearly-labelled pending items.
+ * Company timeline, from the milestone history published on dksm.com.my.
+ * The 2017 entry relating to Dyno MEP Services is intentionally omitted
+ * (associate company — not referenced on this site). Award years follow
+ * the published timeline (2015/2018); the supplied award logo files carry
+ * 2016/17 wording — flag to client if a correction is needed.
  */
 export const timeline = [
   {
     year: '1982',
-    title: 'DKSM founded',
-    text: 'The group begins serving Malaysian industries, building its base in engineering solutions.',
+    title: 'Founded',
+    text: 'The group begins as Dyno Fire Prevention Supply & Engineering Services, serving Malaysian industries.',
     placeholder: false,
   },
   {
-    year: '—',
-    title: 'Capability expansion',
-    // TODO: Confirm with client before launch — add key milestones (major contracts, registrations, branch openings).
-    text: 'Milestone details awaiting client confirmation.',
-    placeholder: true,
+    year: '1999',
+    title: 'Incorporated',
+    text: 'Incorporated as Dyno Klang Fire Protection Engineering Sdn Bhd.',
+    placeholder: false,
+  },
+  {
+    year: '2000',
+    title: 'ISO 9001 certified',
+    text: 'Certified to ISO 9001 for quality management.',
+    placeholder: false,
+  },
+  {
+    year: '2011',
+    title: 'Acquisition',
+    text: 'Dataran Dinamik Sdn Bhd joins the group.',
+    placeholder: false,
+  },
+  {
+    year: '2013',
+    title: 'First East Malaysia project',
+    text: 'Fire-protection project delivered in Kota Kinabalu, Sabah.',
+    placeholder: false,
+  },
+  {
+    year: '2014',
+    title: 'First international project',
+    text: 'Project delivered in Liberia, on the African continent.',
+    placeholder: false,
+  },
+  {
+    year: '2015',
+    title: 'Malaysia Power Brand award',
+    text: 'Recognised at the AEA Malaysia Power Brand awards.',
+    placeholder: false,
   },
   {
     year: '2016',
-    title: 'Power Brand recognition',
-    // TODO: Confirm exact award title and recipient entity with client before launch.
-    text: 'The group’s fire-protection business is recognised at the Malaysia Power Brand 2016/2017 awards.',
+    title: 'First M&E design-and-build project',
+    text: 'The group delivers its first mechanical & electrical design-and-build project.',
     placeholder: false,
   },
   {
-    year: '2017',
-    title: 'Sin Chew Business Excellence Award',
-    // TODO: Confirm exact award title and recipient entity with client before launch.
-    text: 'Recognised for service excellence at the Sin Chew Business Excellence Awards 2017.',
+    year: '2018',
+    title: 'Sin Chew Business Excellence award',
+    text: 'Recognised at the Sin Chew Business Excellence awards.',
     placeholder: false,
   },
   {
-    year: 'Today',
-    title: 'Serving the Klang Valley and beyond',
-    text: 'More than 500 projects completed for over 300 clients across industrial, commercial and infrastructure sectors.',
+    year: '2022',
+    title: 'Rebranded as DKSM Sdn Bhd',
+    text: 'The group adopts the DKSM name, carrying four decades of track record forward.',
+    placeholder: false,
+  },
+  {
+    year: '2023',
+    title: 'New corporate office',
+    text: 'A new corporate office opens, with 100+ additional resources for project support.',
     placeholder: false,
   },
 ] as const

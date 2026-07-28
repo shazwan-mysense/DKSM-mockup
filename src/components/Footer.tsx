@@ -13,6 +13,7 @@ export default function Footer() {
             {company.shortDescription}
           </p>
           <p className="tech-label mt-6 text-white/60">Est. 1982 · {serviceRegion}</p>
+          <p className="mt-2 text-[12.5px] italic text-white/45">“{company.slogan}”</p>
         </div>
 
         <nav aria-label="Footer — pages">
@@ -60,6 +61,11 @@ export default function Footer() {
             </p>
             <p>Tel: {contact.phone}</p>
             <p>
+              <a href={`mailto:${contact.email}`} className="transition-colors hover:text-white">
+                {contact.email}
+              </a>
+            </p>
+            <p>
               {contact.businessHours.map((h) => (
                 <span key={h.days} className="block">
                   {h.days}: {h.hours}
@@ -89,7 +95,7 @@ export default function Footer() {
 
       <div className="dark-rule-t">
         <div className="shell flex flex-col items-start justify-between gap-3 py-6 text-[12.5px] text-white/60 sm:flex-row sm:items-center">
-          <p>© {new Date().getFullYear()} {company.name}. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} {company.legalName}. All rights reserved.</p>
           <p className="flex gap-5">
             {/* TODO: Replace with real policy pages before launch. */}
             <span>Privacy Policy (placeholder)</span>

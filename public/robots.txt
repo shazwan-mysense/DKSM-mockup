@@ -1,6 +1,6 @@
 # DKSM Group — robots
-# TODO: Replace the sitemap host with the final production domain before launch.
+# Host is the group's existing domain; confirm before launch.
 User-agent: *
 Allow: /
 
-Sitemap: https://www.dksm-group.example/sitemap.xml
+Sitemap: https://dksm.com.my/sitemap.xml

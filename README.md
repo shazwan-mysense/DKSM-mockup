@@ -5,8 +5,10 @@ specialising in Mechanical, Electrical & Plumbing (MEP) and fire-protection
 systems — design & build, supply & distribution, installation & commissioning,
 maintenance, technical training and authority approvals.
 
-> **Status: design mockup for client review.** All layout, copy and interactions
-> are functional, but several facts are still awaiting client confirmation
+> **Status: design mockup for client review.** Company facts, leadership
+> profiles, the project track record, client logos and contact channels are
+> integrated from DKSM's published website (dksm.com.my) and client-supplied
+> materials. A short list of items still needs confirmation
 > (see [Information requiring confirmation](#information-still-requiring-client-confirmation))
 > and the contact form has no backend connected yet.
 
@@ -80,7 +82,8 @@ DKSM Website/
 │   └── sitemap.xml
 └── src/
     ├── data/                   # ← ALL editable content lives here
-    │   ├── company.ts          # identity, contact, stats, process, strengths, timeline
+    │   ├── company.ts          # identity, contact, stats, process, timeline, mission/vision
+    │   ├── team.ts             # leadership profiles (from dksm.com.my)
     │   ├── services.ts         # 6 service lines + product categories
     │   ├── industries.ts       # 6 industries
     │   ├── credentials.ts      # registrations/memberships/awards + categories
@@ -204,40 +207,38 @@ commercial use without attribution; sources are recorded here for provenance.
 
 ## Information still requiring client confirmation
 
-Client feedback round 1 (14 July 2026) confirmed the contact details, removed
-the healthcare and oil/gas/energy sectors, set fire-protection-first
-messaging, and directed that Dyno MEP Services (an associate company, not a
-subsidiary) is not referenced on the site. Still outstanding — search the
-codebase for `TODO: Confirm`:
+Most facts now come from DKSM's own published website (dksm.com.my) and the
+client's 14 July 2026 feedback. Still outstanding — search `TODO: Confirm`:
 
-1. **Email and WhatsApp** — not yet supplied (address, phone and opening
-   hours were provided 14 July 2026 and get a final check before go-live).
-2. **Facebook and LinkedIn page URLs** — client confirmed FB + LinkedIn as
-   the channels; icons render automatically once URLs are set in
-   `src/data/company.ts`.
-3. **Client logos** — being compiled on the client side (famous/major
-   brands); wall on the Projects page is ready for them.
-4. **Statistics** — 40+ years / 500+ projects / 300+ clients should be
-   reconfirmed before launch.
-5. **Legal entity name(s)** for the footer/copyright and Organization schema.
-6. **Credentials** — exact nature and validity of every item in
-   `src/data/credentials.ts` (all flagged `confirmed: false`).
-7. **Timeline milestones** — only 1982 confirmed; awards 2016/2017 wording
-   pending.
-8. **Projects** — all cards and the featured case study are labelled
-   placeholders; client will identify major projects and photos.
-9. **Team & careers** — key-staff photos to be taken; job vacancies to be
-   supplied for the careers slot on the About page.
-10. **Company news** — no items published yet; structure ready in
-    `src/data/news.ts`.
-11. **Product brands** — omitted until distributorships are confirmed in
-    writing.
-12. **Final domain** — replace `https://www.dksm-group.example` in
-    `src/data/company.ts`, `index.html`, `public/sitemap.xml` and
-    `public/robots.txt`.
-13. **Privacy Policy and Terms** — footer placeholders need real pages.
-14. **Photography** — stock imagery stands in until DKSM/MYSense photos are
-    supplied.
+1. **Award years** — the published milestone timeline says Power Brand 2015
+   and Sin Chew 2018, while the supplied logo files say 2016/17 and 2017.
+   The site follows the published timeline; confirm which is correct.
+2. **Registration credentials** — exact nature/validity of BOMBA, CIDB
+   (grade), Energy Commission, SPAN, TNB and MOF registrations.
+3. **Product brands** for Supply & Distribution, confirmed in writing, plus
+   the certifying body behind "certified" training wording.
+4. **Photography** — hero/service/industry imagery is still licensed stock;
+   DKSM project and team photos to be supplied (project photos from the old
+   site are already in use on project cards).
+5. **Careers** — actual vacancies for the About-page careers slot.
+6. **Company news** — first announcements for the Knowledge Centre.
+7. **Privacy Policy and Terms** — footer placeholders need real pages.
+8. **Domain** — the site assumes dksm.com.my will carry the new build;
+   confirm at launch.
+9. Better logo files: IFE (transparent), MOF, MFPA, KCCCI (higher res).
+
+## Content sourced from dksm.com.my
+
+The following were integrated from the group's published website:
+company profile copy, slogan, mission/vision/core values, milestone
+timeline (1982–2023), statistics (40+ years / 2500+ projects / 500+
+clients), leadership names, roles, biographies and portraits
+(originals in `raw-assets/people/`), the client logo wall
+(`public/images/clients/`), ten named project references with photos
+(`public/images/projects/real-*.webp`), the official DKSM Group logo
+(`public/images/brand/dksm-logo-official.png`), email, WhatsApp,
+Facebook and LinkedIn. Dyno MEP Services remains unreferenced per the
+client's positioning decision.
 
 ## Asset quality flags
 

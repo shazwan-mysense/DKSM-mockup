@@ -2,7 +2,7 @@ import { useMemo, useRef, useState } from 'react'
 import { asset } from '../lib/asset'
 import { useBreadcrumbSchema, usePageMeta } from '../lib/meta'
 import { useInView } from '../lib/motion'
-import { clientLogos, featuredCaseStudy, gallery, galleryDisclaimer, projects, sectors } from '../data/projects'
+import { clientLogos, featuredProject, gallery, galleryDisclaimer, projects, sectors } from '../data/projects'
 import type { Sector } from '../data/projects'
 import { industries } from '../data/industries'
 import Lightbox from '../components/Lightbox'
@@ -29,8 +29,8 @@ function ProjectGallery() {
       <div className="shell" ref={ref}>
         <SectionHeading
           eyebrow="Project portfolio"
-          title="Recent and representative work"
-          lead="Confirmed DKSM project references are being compiled — the cards below hold their place and will be populated with real scopes, locations and photography."
+          title="Track record across critical facilities"
+          lead="Real projects from the group’s published track record — grouped by sector, from aluminium smelting lines to university campuses."
         />
 
         <div className="mt-10 flex flex-wrap gap-2" role="group" aria-label="Filter projects by sector">
@@ -62,31 +62,25 @@ function ProjectGallery() {
                   imgClassName="transition-transform duration-700 group-hover:scale-[1.04]"
                 />
                 <span className="tech-label absolute left-3 top-3 bg-ink/85 px-2.5 py-1.5 text-white">{p.sector}</span>
-                {p.placeholder && (
-                  <span className="tech-label absolute right-3 top-3 rounded-[3px] bg-amber-100/95 px-2.5 py-1.5 text-[9px] text-amber-900">
-                    Awaiting confirmation
-                  </span>
-                )}
               </div>
               <div className="p-5">
-                <h3 className="font-display text-[16px] font-bold leading-snug text-ink">{p.scope}</h3>
-                <p className="mt-3 flex flex-wrap gap-1.5">
-                  {p.services.map((s) => (
-                    <span key={s} className="rounded-[3px] border border-line bg-paper px-2 py-1 text-[11.5px] text-graphite">
-                      {s}
-                    </span>
-                  ))}
+                <h3 className="font-display text-[16px] font-bold leading-snug text-ink">{p.name}</h3>
+                <p className="mt-1.5 text-[13px] leading-relaxed text-steel">
+                  {p.facility} · {p.location}
                 </p>
-                <p className="mt-3 text-[12.5px] leading-relaxed text-steel">
-                  Client, location and project details to be published once confirmed by DKSM.
+                <p className="mt-3">
+                  <span className="rounded-[3px] border border-line bg-paper px-2 py-1 text-[11.5px] text-graphite">
+                    {p.scope}
+                  </span>
                 </p>
+                <p className="mt-3 text-[12.5px] leading-relaxed text-steel">Owner: {p.owner}</p>
               </div>
             </li>
           ))}
         </ul>
         {visible.length === 0 && (
           <p className="mt-10 rounded-[4px] border border-line bg-white p-8 text-center text-[14.5px] text-steel">
-            No projects in this sector yet — confirmed references are being compiled.
+            No published references in this sector yet — ask the team about recent work here.
           </p>
         )}
       </div>
@@ -105,7 +99,7 @@ function Clients() {
         <SectionHeading
           eyebrow="Clients"
           title="Organisations we work with"
-          lead="Official client logos are being compiled and will be shown here — logos only, with the work grouped under the projects above."
+          lead="A selection of the organisations the group has worked with, as published by DKSM — logos only, with the work shown under the projects above."
         />
         <ul className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-[4px] border border-line bg-line sm:grid-cols-3 lg:grid-cols-6">
           {clientLogos.length > 0
@@ -130,52 +124,33 @@ function Clients() {
 }
 
 /* ------------------------------------------------------------------ */
-/* Featured case study                                                  */
+/* Featured project — real, from the published track record             */
 /* ------------------------------------------------------------------ */
-function CaseStudy() {
-  const cs = featuredCaseStudy
+function FeaturedWork() {
+  const fp = featuredProject
   const ref = useInView<HTMLDivElement>(0.05)
   return (
     <section className="grid-lines bg-ink py-20 text-white md:py-28">
       <div className="shell" ref={ref}>
-        <SectionHeading
-          eyebrow="Featured case study"
-          title="The structure every DKSM reference will follow"
-          lead="Challenge, scope, solution, systems and outcome — ready to carry a confirmed project the moment details are approved."
-          dark
-        />
-        <div className="mt-12 grid gap-px overflow-hidden rounded-[4px] border border-white/10 bg-white/10 lg:grid-cols-[1.2fr_1fr]">
-          <div className="relative bg-ink">
-            <SmartImage src={cs.image} alt={cs.imageAlt} className="h-full min-h-[280px]" imgClassName="opacity-80" />
-            {cs.placeholder && (
-              <p className="tech-label absolute left-4 top-4 rounded-[3px] bg-ink/90 px-3 py-2 text-amber-300">
-                {cs.label}
-              </p>
-            )}
+        <SectionHeading eyebrow="Featured project" title={fp.name} lead={fp.text} dark />
+        <div className="mt-12 grid gap-px overflow-hidden rounded-[4px] border border-white/10 bg-white/10 lg:grid-cols-[1.25fr_1fr]">
+          <div className="bg-ink">
+            <SmartImage src={fp.image} alt={fp.imageAlt} className="h-full min-h-[280px]" imgClassName="opacity-90" />
           </div>
-          <div className="space-y-6 bg-ink p-7 sm:p-9">
+          <dl className="space-y-6 bg-ink p-7 sm:p-9">
             {[
-              ['Challenge', cs.challenge],
-              ['DKSM scope', cs.scope],
-              ['Solution', cs.solution],
-              ['Outcome', cs.outcome],
+              ['Owner', fp.owner],
+              ['Location', fp.location],
+              ['Facility', fp.facility],
+              ['Work scope', fp.scope],
+              ['Sector', fp.sector],
             ].map(([k, v]) => (
               <div key={k} className="reveal">
-                <h3 className="tech-label text-brand-bright">{k}</h3>
-                <p className="mt-2 text-[14px] leading-relaxed text-white/65">{v}</p>
+                <dt className="tech-label text-brand-bright">{k}</dt>
+                <dd className="mt-1.5 text-[14.5px] leading-relaxed text-white/75">{v}</dd>
               </div>
             ))}
-            <div className="reveal">
-              <h3 className="tech-label text-brand-bright">Systems involved</h3>
-              <p className="mt-2 flex flex-wrap gap-2">
-                {cs.systems.map((s) => (
-                  <span key={s} className="rounded-[3px] border border-white/15 px-2.5 py-1 text-[12px] text-white/70">
-                    {s}
-                  </span>
-                ))}
-              </p>
-            </div>
-          </div>
+          </dl>
         </div>
       </div>
     </section>
@@ -293,7 +268,7 @@ export default function Projects() {
       <Breadcrumbs items={BREADCRUMB} />
       <ProjectGallery />
       <Clients />
-      <CaseStudy />
+      <FeaturedWork />
       <IndustryExpertise />
       <ImageGallery />
       <CTABlock
