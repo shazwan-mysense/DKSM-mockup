@@ -1,8 +1,9 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { asset, assetSrcSet } from '../lib/asset'
 import { usePageMeta } from '../lib/meta'
 import { useInView } from '../lib/motion'
-import { company, serviceRegion, strengths } from '../data/company'
+import { announcement, company, serviceRegion, strengths } from '../data/company'
 import { services } from '../data/services'
 import { industries } from '../data/industries'
 import { featuredCaseStudy } from '../data/projects'
@@ -10,6 +11,38 @@ import StatBand from '../components/StatBand'
 import ProcessFlow from '../components/ProcessFlow'
 import CredentialWall from '../components/CredentialWall'
 import { CTABlock, SectionHeading, SmartImage } from '../components/primitives'
+
+/* ------------------------------------------------------------------ */
+/* Announcement banner — renders only when data/company.ts sets one     */
+/* ------------------------------------------------------------------ */
+function AnnouncementBanner() {
+  const [dismissed, setDismissed] = useState(false)
+  if (!announcement || dismissed) return null
+  return (
+    <div className="relative z-40 mt-[68px] bg-brand text-white">
+      <div className="shell flex items-center justify-between gap-4 py-2.5">
+        <p className="text-[13.5px] leading-snug">
+          {announcement.text}
+          {announcement.linkTo && (
+            <Link to={announcement.linkTo} className="ml-2 underline underline-offset-4">
+              {announcement.linkLabel ?? 'Read more'}
+            </Link>
+          )}
+        </p>
+        <button
+          type="button"
+          onClick={() => setDismissed(true)}
+          aria-label="Dismiss announcement"
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[3px] hover:bg-white/15"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M5 5l14 14M19 5L5 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  )
+}
 
 /* ------------------------------------------------------------------ */
 /* Hero                                                                 */
@@ -32,7 +65,7 @@ function Hero() {
 
       <div className="shell relative flex flex-1 flex-col justify-center py-20">
         <p className="tech-label hero-rise text-brand-bright">
-          MEP &amp; Fire Protection Engineering
+          Fire Protection &amp; MEP Engineering
         </p>
         <h1
           className="hero-rise mt-6 max-w-[17ch] font-extrabold"
@@ -65,7 +98,7 @@ function Hero() {
           {[
             ['Est.', '1982'],
             ['Region', serviceRegion],
-            ['Disciplines', 'M · E · P · Fire'],
+            ['Disciplines', 'Fire · M · E · P'],
             ['Scope', 'Design → Maintenance'],
           ].map(([k, v]) => (
             <p key={k} className="flex flex-col gap-0.5 py-1 sm:flex-row sm:items-baseline sm:gap-2">
@@ -122,9 +155,6 @@ function WhoWeAre() {
               </li>
             ))}
           </ul>
-          <p className="reveal mt-6 max-w-xl text-[14.5px] leading-relaxed text-steel">
-            {company.subsidiary.description}
-          </p>
           <Link to="/about" className="btn-outline-dark reveal mt-8">
             More About DKSM
           </Link>
@@ -148,7 +178,7 @@ function ServicesOverview() {
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHeading
             eyebrow="What we do"
-            title="One-stop solution for MEP and fire protection"
+            title="One-stop solution for fire protection and MEP"
             lead="Six service lines covering the full life of an engineering system — specify one, or let DKSM carry the project end to end."
           />
           <Link to="/services" className="btn-outline-dark hidden md:inline-flex">
@@ -341,9 +371,9 @@ function WhyDksm() {
 /* ------------------------------------------------------------------ */
 export default function Home() {
   usePageMeta({
-    title: 'DKSM Group — MEP & Fire Protection Engineering, Malaysia',
+    title: 'DKSM Group — Fire Protection & MEP Engineering, Malaysia',
     description:
-      'End-to-end MEP and fire-protection solutions in Malaysia — design, supply, installation, maintenance, training and authority approvals, since 1982.',
+      'End-to-end fire-protection and MEP solutions in Malaysia — design, supply, installation, maintenance, training and authority approvals, since 1982.',
     path: '/',
   })
 
@@ -351,6 +381,7 @@ export default function Home() {
 
   return (
     <>
+      <AnnouncementBanner />
       <Hero />
       <StatBand />
       <WhoWeAre />

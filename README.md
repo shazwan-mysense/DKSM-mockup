@@ -22,9 +22,9 @@ maintenance, technical training and authority approvals.
 | `/` | Home |
 | `/about` | About Us (story, timeline, values, safety, credentials) |
 | `/services` | Services & Products (6 service lines + product categories) |
-| `/projects` | Projects & Industries (filterable cards, case-study shell, industry expertise, gallery + lightbox) |
-| `/knowledge` | Knowledge Centre (searchable FAQ + educational articles) |
-| `/contact` | Contact Us (enquiry form, contact details, map placeholder) |
+| `/projects` | Projects & Industries (filterable cards, client logo wall, case-study shell, industry expertise, gallery + lightbox) |
+| `/knowledge` | Knowledge Centre (guides & education, company news, general FAQs, awards & recognition) |
+| `/contact` | Contact Us (enquiry form, contact details, opening hours, Google Maps embed) |
 
 ## Technology
 
@@ -82,11 +82,12 @@ DKSM Website/
     ├── data/                   # ← ALL editable content lives here
     │   ├── company.ts          # identity, contact, stats, process, strengths, timeline
     │   ├── services.ts         # 6 service lines + product categories
-    │   ├── industries.ts       # 8 industries
+    │   ├── industries.ts       # 6 industries
     │   ├── credentials.ts      # registrations/memberships/awards + categories
     │   ├── projects.ts         # project cards, case study, gallery
     │   ├── faqs.ts             # FAQ categories
-    │   └── articles.ts         # Knowledge Centre articles
+    │   ├── articles.ts         # Knowledge Centre guides
+    │   └── news.ts             # company news (empty until supplied)
     ├── components/             # Header, Footer, form, lightbox, accordion, etc.
     ├── pages/                  # one file per route
     └── lib/                    # meta (SEO) + motion (animation) hooks
@@ -114,10 +115,17 @@ Add the logo file to `public/images/credentials/` and append an entry in
 `confirmed: true|false`. Both the homepage logo wall and the About-page
 credentials section render from this one file.
 
-### Update FAQs and articles
-[`src/data/faqs.ts`](src/data/faqs.ts) and
-[`src/data/articles.ts`](src/data/articles.ts). Search and category filtering
-pick up new entries automatically.
+### Update FAQs, articles and company news
+[`src/data/faqs.ts`](src/data/faqs.ts), [`src/data/articles.ts`](src/data/articles.ts)
+and [`src/data/news.ts`](src/data/news.ts). Search/filtering and the news grid
+pick up new entries automatically; while `news` is empty the section shows an
+honest empty state. A homepage announcement banner can be enabled by setting
+`announcement` in [`src/data/company.ts`](src/data/company.ts).
+
+### Add client logos
+Drop official logo files into `public/images/clients/` and add entries to
+`clientLogos` in [`src/data/projects.ts`](src/data/projects.ts) — the wall on
+the Projects page switches from placeholder tiles to real logos automatically.
 
 ### Connect the contact form
 The form currently runs client-side validation and then shows the success
@@ -196,30 +204,40 @@ commercial use without attribution; sources are recorded here for provenance.
 
 ## Information still requiring client confirmation
 
-Search the codebase for `TODO: Confirm` to find every flag. In summary:
+Client feedback round 1 (14 July 2026) confirmed the contact details, removed
+the healthcare and oil/gas/energy sectors, set fire-protection-first
+messaging, and directed that Dyno MEP Services (an associate company, not a
+subsidiary) is not referenced on the site. Still outstanding — search the
+codebase for `TODO: Confirm`:
 
-1. **Contact details** — address and phone numbers shown are from the supplied
-   2017 press materials for Dyno Klang Fire Protection Engineering Sdn Bhd;
-   confirm the current office address, phone, **email, WhatsApp and business
-   hours** (none supplied). Map embed pending a confirmed location.
-2. **Statistics** — 40+ years / 500+ projects / 300+ clients (from the current
-   Google Sites content) should be reconfirmed before launch.
-3. **Legal entity name(s)** for the footer/copyright and Organization schema.
-4. **Credentials** — the exact nature (registration / licence / membership /
-   award), validity and recipient entity of every item in
-   `src/data/credentials.ts` (all currently flagged `confirmed: false`).
-5. **Timeline milestones** — only 1982 (founding) and 2019 (Dyno MEP Services)
-   are confirmed; awards 2016/2017 need wording confirmation.
-6. **Projects** — all project cards and the featured case study are labelled
-   placeholders; real references, scopes and photography needed.
-7. **Product brands** — distributorship brand names intentionally omitted until
-   confirmed in writing.
-8. **Final domain** — replace `https://www.dksm-group.example` in
-   `src/data/company.ts`, `index.html`, `public/sitemap.xml` and
-   `public/robots.txt`.
-9. **Privacy Policy and Terms** — footer placeholders need real pages.
-10. **Photography** — all people/site photography is licensed stock standing in
-    until DKSM's own project and team photos are taken.
+1. **Email and WhatsApp** — not yet supplied (address, phone and opening
+   hours were provided 14 July 2026 and get a final check before go-live).
+2. **Facebook and LinkedIn page URLs** — client confirmed FB + LinkedIn as
+   the channels; icons render automatically once URLs are set in
+   `src/data/company.ts`.
+3. **Client logos** — being compiled on the client side (famous/major
+   brands); wall on the Projects page is ready for them.
+4. **Statistics** — 40+ years / 500+ projects / 300+ clients should be
+   reconfirmed before launch.
+5. **Legal entity name(s)** for the footer/copyright and Organization schema.
+6. **Credentials** — exact nature and validity of every item in
+   `src/data/credentials.ts` (all flagged `confirmed: false`).
+7. **Timeline milestones** — only 1982 confirmed; awards 2016/2017 wording
+   pending.
+8. **Projects** — all cards and the featured case study are labelled
+   placeholders; client will identify major projects and photos.
+9. **Team & careers** — key-staff photos to be taken; job vacancies to be
+   supplied for the careers slot on the About page.
+10. **Company news** — no items published yet; structure ready in
+    `src/data/news.ts`.
+11. **Product brands** — omitted until distributorships are confirmed in
+    writing.
+12. **Final domain** — replace `https://www.dksm-group.example` in
+    `src/data/company.ts`, `index.html`, `public/sitemap.xml` and
+    `public/robots.txt`.
+13. **Privacy Policy and Terms** — footer placeholders need real pages.
+14. **Photography** — stock imagery stands in until DKSM/MYSense photos are
+    supplied.
 
 ## Asset quality flags
 

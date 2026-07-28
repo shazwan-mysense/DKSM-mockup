@@ -23,7 +23,7 @@ export const faqCategories: FaqCategory[] = [
     faqs: [
       {
         q: 'What services does DKSM provide?',
-        a: 'DKSM Group provides mechanical, electrical and plumbing (MEP) and fire-protection services across six areas: design and build, supply and distribution of selected engineering products, installation and commissioning, maintenance, technical training, and authority approvals support.',
+        a: 'DKSM Group provides fire-protection and mechanical, electrical and plumbing (MEP) services across six areas: design and build, supply and distribution of selected engineering products, installation and commissioning, maintenance, technical training, and authority approvals support.',
       },
       {
         q: 'Does DKSM handle projects from design to maintenance?',
@@ -31,7 +31,7 @@ export const faqCategories: FaqCategory[] = [
       },
       {
         q: 'Which industries does DKSM serve?',
-        a: 'DKSM serves industrial facilities, commercial buildings, healthcare, educational institutions, hospitality and retail, transportation infrastructure, data centres, and the oil, gas and energy sector — primarily across the Klang Valley and beyond.',
+        a: 'DKSM serves industrial facilities, commercial buildings, educational institutions, hospitality and retail, transportation infrastructure and data centres — primarily across the Klang Valley and beyond.',
       },
       {
         q: 'Does DKSM provide products as well as services?',

@@ -66,7 +66,7 @@ export default function Header() {
         <Link to="/" className="flex shrink-0 items-center gap-3" aria-label="DKSM Group — home">
           <img src={asset('/images/brand/dksm-logo.png')} alt="DKSM Group" className="h-12 w-auto sm:h-14" />
           <span className="tech-label mt-1 hidden text-white/60 min-[1160px]:block">
-            MEP &amp; Fire Protection
+            Fire Protection &amp; MEP
           </span>
         </Link>
 

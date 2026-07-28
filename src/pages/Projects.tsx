@@ -1,7 +1,8 @@
 import { useMemo, useRef, useState } from 'react'
+import { asset } from '../lib/asset'
 import { useBreadcrumbSchema, usePageMeta } from '../lib/meta'
 import { useInView } from '../lib/motion'
-import { featuredCaseStudy, gallery, galleryDisclaimer, projects, sectors } from '../data/projects'
+import { clientLogos, featuredCaseStudy, gallery, galleryDisclaimer, projects, sectors } from '../data/projects'
 import type { Sector } from '../data/projects'
 import { industries } from '../data/industries'
 import Lightbox from '../components/Lightbox'
@@ -88,6 +89,41 @@ function ProjectGallery() {
             No projects in this sector yet — confirmed references are being compiled.
           </p>
         )}
+      </div>
+    </section>
+  )
+}
+
+/* ------------------------------------------------------------------ */
+/* Client logo wall — logos only, per client direction (14 July 2026)   */
+/* ------------------------------------------------------------------ */
+function Clients() {
+  const ref = useInView<HTMLDivElement>()
+  return (
+    <section className="rule-t bg-white py-20 md:py-24">
+      <div className="shell" ref={ref}>
+        <SectionHeading
+          eyebrow="Clients"
+          title="Organisations we work with"
+          lead="Official client logos are being compiled and will be shown here — logos only, with the work grouped under the projects above."
+        />
+        <ul className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-[4px] border border-line bg-line sm:grid-cols-3 lg:grid-cols-6">
+          {clientLogos.length > 0
+            ? clientLogos.map((c) => (
+                <li key={c.name} className="flex h-28 items-center justify-center bg-white p-5">
+                  <img src={asset(c.image)} alt={c.name} loading="lazy" className="max-h-full max-w-full object-contain" />
+                </li>
+              ))
+            : Array.from({ length: 6 }).map((_, i) => (
+                <li key={i} className="reveal flex h-28 items-center justify-center bg-white p-5">
+                  <span className="tech-label text-center text-[11px] leading-snug text-steel/80">
+                    Client logo
+                    <br />
+                    pending
+                  </span>
+                </li>
+              ))}
+        </ul>
       </div>
     </section>
   )
@@ -240,7 +276,7 @@ export default function Projects() {
   usePageMeta({
     title: 'Projects & Industries | DKSM Group',
     description:
-      'MEP and fire-protection engineering for industrial, commercial, healthcare, transport, data-centre and energy facilities across Malaysia.',
+      'Fire-protection and MEP engineering for industrial, commercial, education, transport and data-centre facilities across Malaysia.',
     path: '/projects',
   })
   useBreadcrumbSchema(BREADCRUMB)
@@ -256,6 +292,7 @@ export default function Projects() {
       />
       <Breadcrumbs items={BREADCRUMB} />
       <ProjectGallery />
+      <Clients />
       <CaseStudy />
       <IndustryExpertise />
       <ImageGallery />

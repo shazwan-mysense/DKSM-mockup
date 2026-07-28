@@ -20,7 +20,7 @@ export const services: Service[] = [
     num: '01',
     title: 'Design & Build',
     short:
-      'End-to-end MEP and fire-protection design and build solutions, tailored to the specifications of each project — engineering, procurement, construction and commissioning handled in-house.',
+      'End-to-end fire-protection and MEP design and build solutions, tailored to the specifications of each project — engineering, procurement, construction and commissioning handled in-house.',
     intro:
       'For clients who want one responsible party from concept to handover, DKSM takes a project from requirement assessment through engineering design, procurement and construction to a tested, commissioned system.',
     coverage: [

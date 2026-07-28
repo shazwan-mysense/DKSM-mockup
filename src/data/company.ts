@@ -19,21 +19,29 @@ export const company = {
   legalName: 'DKSM Group',
   foundedYear: 1982,
   tagline: 'Trusted Engineering Partner for Industrial & Infrastructure Projects',
+  /**
+   * Client direction (14 July 2026): fire protection comes before MEP —
+   * it is the core; MEP is the secondary focus. Keep that order in copy.
+   */
   supportingLine:
-    'One-stop solutions for Mechanical, Electrical & Plumbing and fire-protection requirements.',
+    'One-stop solutions for fire-protection and Mechanical, Electrical & Plumbing requirements.',
   shortDescription:
-    'DKSM Group delivers end-to-end MEP and fire-protection solutions — from design, supply and installation to maintenance, training and authority approvals.',
-  /** From the current DKSM Google Sites content. */
+    'DKSM Group delivers end-to-end fire-protection and MEP solutions — from design, supply and installation to maintenance, training and authority approvals.',
   introduction:
-    'DKSM Group was founded in 1982 and has since grown into one of Malaysia’s most established engineering solution providers. Specialising in Mechanical, Electrical and Plumbing (MEP) systems and fire protection, we serve clients across the industrial, commercial and infrastructure sectors with a full suite of in-house capabilities — from concept design through to handover and long-term maintenance.',
-  subsidiary: {
-    name: 'Dyno MEP Services Sdn Bhd',
-    establishedYear: 2019,
-    /** From the current DKSM Google Sites content. */
-    description:
-      'Our subsidiary, Dyno MEP Services Sdn Bhd, was established in 2019 to extend our reach in MEP contracting and fire-protection services, bringing the same rigour and reliability that has defined DKSM Group for over 40 years.',
-  },
+    'DKSM Group was founded in 1982 and has since grown into one of Malaysia’s most established engineering solution providers. Specialising in fire protection and Mechanical, Electrical and Plumbing (MEP) systems, we serve clients across the industrial, commercial and infrastructure sectors with a full suite of in-house capabilities — from concept design through to handover and long-term maintenance.',
+  /*
+   * Client decision (14 July 2026): Dyno MEP Services (DMS) is an associate
+   * company, not a subsidiary, and is intentionally NOT referenced on this
+   * website for marketing positioning reasons. Do not re-add it.
+   */
 }
+
+/**
+ * Homepage announcement / pop-up slot (client requested the option of
+ * posting company news on the main page). Leave as null to hide; set to a
+ * short message + optional link to show a dismissible banner on Home.
+ */
+export const announcement: { text: string; linkLabel?: string; linkTo?: string } | null = null
 
 /**
  * Statistics from the client's current website.
@@ -47,25 +55,34 @@ export const stats = [
 ] as const
 
 /**
- * Contact details.
- * Source: 2017 Sin Chew Daily feature on Dyno Klang Fire Protection
- * Engineering Sdn Bhd supplied in the client's Drive folder
- * (Company Credentials & Awards). These are the group's Klang premises
- * as published there.
- * TODO: Confirm current address, phone, email, WhatsApp and business
- * hours with client before launch.
+ * Contact details — provided by the client on 14 July 2026
+ * ("details can be corrected & adjusted before go-live").
  */
 export const contact = {
-  addressLines: ['Lot 10436X, Batu 5, Jalan Kampong Jawa', '41000 Klang, Selangor, Malaysia'],
-  addressConfirmed: false,
-  phone: '03-5161 9670',
-  phoneAlt: '03-5161 9671',
-  phoneConfirmed: false,
+  addressLines: [
+    'No. 23, Jalan Tok Janggut H 35/H, Alam Impian',
+    'Seksyen 35, 40470 Shah Alam, Selangor, Malaysia',
+  ],
+  /** International format, as instructed by the client. */
+  phone: '+60 16-837 8459',
   email: null as string | null, // TODO: Confirm with client before launch.
   whatsapp: null as string | null, // TODO: Confirm with client before launch.
-  businessHours: null as string | null, // TODO: Confirm with client before launch.
-  /** Set to a Google Maps embed URL once the location is confirmed. */
-  mapEmbedUrl: null as string | null,
+  businessHours: [
+    { days: 'Monday – Friday', hours: '8:00 am – 5:00 pm' },
+    { days: 'Saturday', hours: '8:00 am – 1:00 pm' },
+  ],
+  mapEmbedUrl:
+    'https://www.google.com/maps/embed?origin=mfe&pb=!1m2!2m1!1sNo.23%20Jalan%20Tok%20Janggut%20H%2035%2FH%20Alam%20Impian%20Seksyen%2035%2040470%20Shah%20Alam%20Selangor',
+}
+
+/**
+ * Social channels — client direction: Facebook and LinkedIn only for DKSM
+ * (IG/YouTube considered better suited to the B2C side).
+ * TODO: Add the actual page URLs — icons render only once these are set.
+ */
+export const socials = {
+  facebook: null as string | null,
+  linkedin: null as string | null,
 }
 
 export const serviceRegion = 'Klang Valley and beyond'
@@ -80,7 +97,7 @@ export const processSteps = [
   {
     num: '02',
     title: 'Technical planning & design',
-    text: 'Engineering requirements are translated into coordinated MEP and fire-protection designs with proper documentation.',
+    text: 'Engineering requirements are translated into coordinated fire-protection and MEP designs with proper documentation.',
   },
   {
     num: '03',
@@ -112,7 +129,7 @@ export const strengths = [
   },
   {
     title: 'Integrated engineering capabilities',
-    text: 'Mechanical, electrical, plumbing and fire protection handled under one roof — fewer interfaces, fewer gaps.',
+    text: 'Fire protection, mechanical, electrical and plumbing handled under one roof — fewer interfaces, fewer gaps.',
   },
   {
     title: 'Support from design through maintenance',
@@ -135,7 +152,7 @@ export const strengths = [
 /** Mission / vision / values — kept factual and practical. */
 export const missionVision = {
   mission:
-    'To deliver MEP and fire-protection systems that work as designed, comply with Malaysian requirements, and stay dependable throughout their service life.',
+    'To deliver fire-protection and MEP systems that work as designed, comply with Malaysian requirements, and stay dependable throughout their service life.',
   vision:
     'To remain the engineering partner Malaysian industries rely on — for new projects, existing facilities, and everything in between.',
   values: [
@@ -201,12 +218,6 @@ export const timeline = [
     placeholder: false,
   },
   {
-    year: '2019',
-    title: 'Dyno MEP Services Sdn Bhd established',
-    text: 'A dedicated subsidiary extends the group’s reach in MEP contracting and fire-protection services.',
-    placeholder: false,
-  },
-  {
     year: 'Today',
     title: 'Serving the Klang Valley and beyond',
     text: 'More than 500 projects completed for over 300 clients across industrial, commercial and infrastructure sectors.',
@@ -222,7 +233,7 @@ export const approach = [
   },
   {
     title: 'Coordinating technical disciplines',
-    text: 'Mechanical, electrical, plumbing and fire protection are planned together so systems do not fight each other on site.',
+    text: 'Fire protection, mechanical, electrical and plumbing are planned together so systems do not fight each other on site.',
   },
   {
     title: 'Selecting suitable systems and equipment',

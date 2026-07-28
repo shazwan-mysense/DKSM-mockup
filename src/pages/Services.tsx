@@ -108,9 +108,9 @@ function ProductCategories() {
 
 export default function Services() {
   usePageMeta({
-    title: 'Services & Products — MEP & Fire Protection | DKSM Group',
+    title: 'Services & Products — Fire Protection & MEP | DKSM Group',
     description:
-      'Six service lines from design to long-term support — MEP design and build, supply, installation and commissioning, maintenance, training and approvals.',
+      'Six service lines from design to long-term support — fire-protection and MEP design and build, supply, commissioning, maintenance, training and approvals.',
     path: '/services',
   })
   useBreadcrumbSchema(BREADCRUMB)

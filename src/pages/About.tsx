@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { asset } from '../lib/asset'
 import { useBreadcrumbSchema, usePageMeta } from '../lib/meta'
 import { useInView } from '../lib/motion'
@@ -24,11 +25,10 @@ function Story() {
             <p>{company.introduction}</p>
             <p>
               The group’s capabilities have grown the way sound engineering firms grow — through delivered
-              work. What began in engineering solutions has extended across MEP contracting, fire protection,
+              work. What began in engineering solutions has extended across fire protection, MEP contracting,
               the supply and distribution of selected engineering products, project execution, and the
               long-term servicing that keeps those systems dependable.
             </p>
-            <p>{company.subsidiary.description}</p>
           </div>
         </div>
         <div className="reveal-scale flex flex-col gap-3">
@@ -217,6 +217,21 @@ function Team() {
         <p className="mt-8 text-[12.5px] text-steel">
           Representative imagery — photography of DKSM’s own teams will be added once supplied.
         </p>
+
+        {/* Careers announcement slot — client add-on request (14 July 2026).
+            TODO: Publish actual vacancies here once provided by DKSM. */}
+        <div className="reveal mt-10 flex flex-col items-start justify-between gap-6 rounded-[4px] border border-line bg-white p-7 sm:flex-row sm:items-center">
+          <div>
+            <h3 className="font-display text-lg font-bold text-ink">Careers at DKSM Group</h3>
+            <p className="mt-2 max-w-xl text-[14px] leading-relaxed text-steel">
+              Job vacancies and career announcements will be published here as the team grows. Interested in
+              working with DKSM in the meantime? Introduce yourself through the contact page.
+            </p>
+          </div>
+          <Link to="/contact" className="btn-outline-dark shrink-0">
+            Get in Touch
+          </Link>
+        </div>
       </div>
     </section>
   )

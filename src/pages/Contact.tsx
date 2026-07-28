@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useBreadcrumbSchema, usePageMeta } from '../lib/meta'
 import { useInView } from '../lib/motion'
-import { contact, serviceRegion } from '../data/company'
+import { contact, serviceRegion, socials } from '../data/company'
 import ContactForm from '../components/ContactForm'
 import { Breadcrumbs, PageHero, SectionHeading } from '../components/primitives'
 
@@ -46,11 +46,25 @@ function ContactDetails() {
       <div className="reveal">
         <h2 className="tech-label text-brand">Telephone</h2>
         <p className="mt-3 text-[15px] leading-relaxed text-graphite">
-          <a href={`tel:+603${contact.phone.replace(/[^0-9]/g, '').slice(2)}`} className="underline decoration-line underline-offset-4 hover:text-brand">
+          <a href={`tel:${contact.phone.replace(/[^+\d]/g, '')}`} className="underline decoration-line underline-offset-4 hover:text-brand">
             {contact.phone}
           </a>
-          <span className="text-steel"> / {contact.phoneAlt}</span>
         </p>
+      </div>
+      <div className="reveal">
+        <h2 className="tech-label text-brand">Opening hours</h2>
+        <dl className="mt-3 space-y-1 text-[15px] leading-relaxed text-graphite">
+          {contact.businessHours.map((h) => (
+            <div key={h.days} className="flex justify-between gap-6">
+              <dt>{h.days}</dt>
+              <dd>{h.hours}</dd>
+            </div>
+          ))}
+          <div className="flex justify-between gap-6 text-steel">
+            <dt>Sunday &amp; public holidays</dt>
+            <dd>Closed</dd>
+          </div>
+        </dl>
       </div>
       <div className="reveal">
         <h2 className="tech-label text-brand">Email &amp; WhatsApp</h2>
@@ -59,12 +73,33 @@ function ContactDetails() {
         </p>
       </div>
       <div className="reveal">
+        <h2 className="tech-label text-brand">Social media</h2>
+        <p className="mt-3 text-[14px] leading-relaxed text-steel">
+          {socials.facebook || socials.linkedin ? (
+            <>
+              {socials.facebook && (
+                <a href={socials.facebook} className="underline decoration-line underline-offset-4 hover:text-brand">
+                  Facebook
+                </a>
+              )}
+              {socials.facebook && socials.linkedin && ' · '}
+              {socials.linkedin && (
+                <a href={socials.linkedin} className="underline decoration-line underline-offset-4 hover:text-brand">
+                  LinkedIn
+                </a>
+              )}
+            </>
+          ) : (
+            'Facebook and LinkedIn — page links being added.'
+          )}
+        </p>
+      </div>
+      <div className="reveal">
         <h2 className="tech-label text-brand">Service region</h2>
         <p className="mt-3 text-[15px] leading-relaxed text-graphite">{serviceRegion}</p>
       </div>
-      <p className="reveal rounded-[3px] border border-amber-500/40 bg-amber-50 px-4 py-3 text-[12.5px] leading-relaxed text-amber-900">
-        Contact details shown are drawn from company materials supplied to date and are being finalised —
-        they will be confirmed with DKSM before the site goes live.
+      <p className="reveal rounded-[3px] border border-line bg-white px-4 py-3 text-[12.5px] leading-relaxed text-steel">
+        Details provided by DKSM on 14 July 2026 — to be given a final check before the site goes live.
       </p>
     </div>
   )
@@ -110,7 +145,7 @@ export default function Contact() {
   usePageMeta({
     title: 'Contact DKSM Group — Discuss Your Engineering Requirements',
     description:
-      'Speak to DKSM about MEP and fire-protection requirements — site assessments, maintenance, product supply and technical training in Malaysia.',
+      'Speak to DKSM about fire-protection and MEP requirements — site assessments, maintenance, product supply and technical training in Shah Alam, Selangor.',
     path: '/contact',
   })
   useBreadcrumbSchema(BREADCRUMB)

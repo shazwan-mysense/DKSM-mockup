@@ -9,25 +9,23 @@
  *
  * TODO: Replace placeholder projects and representative imagery with
  * confirmed DKSM project information and photography before launch.
+ * Client direction (14 July 2026): healthcare and energy sectors removed;
+ * no year-based grouping — projects stay grouped by sector.
  */
 
 export type Sector =
   | 'Industrial'
   | 'Commercial'
-  | 'Healthcare'
   | 'Education'
   | 'Infrastructure'
   | 'Data centres'
-  | 'Energy'
 
 export const sectors: Sector[] = [
   'Industrial',
   'Commercial',
-  'Healthcare',
   'Education',
   'Infrastructure',
   'Data centres',
-  'Energy',
 ]
 
 export interface ProjectCard {
@@ -61,15 +59,6 @@ export const projects: ProjectCard[] = [
     placeholder: true,
   },
   {
-    id: 'proj-healthcare',
-    sector: 'Healthcare',
-    scope: 'Fire-protection systems for a healthcare facility',
-    services: ['Supply & Distribution', 'Installation & Commissioning', 'Maintenance'],
-    image: '/images/projects/gallery-healthcare.webp',
-    imageAlt: 'Representative image — healthcare facility',
-    placeholder: true,
-  },
-  {
     id: 'proj-education',
     sector: 'Education',
     scope: 'System upgrading works for an educational campus',
@@ -94,15 +83,6 @@ export const projects: ProjectCard[] = [
     services: ['Design & Build', 'Maintenance'],
     image: '/images/projects/gallery-data.webp',
     imageAlt: 'Representative image — data centre',
-    placeholder: true,
-  },
-  {
-    id: 'proj-energy',
-    sector: 'Energy',
-    scope: 'Specialist fire-protection works for an energy-sector site',
-    services: ['Design & Build', 'Authority Approvals'],
-    image: '/images/projects/gallery-energy.webp',
-    imageAlt: 'Representative image — energy facility',
     placeholder: true,
   },
 ]
@@ -146,3 +126,20 @@ export const gallery: GalleryItem[] = [
 
 export const galleryDisclaimer =
   'Representative imagery shown. Actual DKSM project photography will replace these images once supplied.'
+
+/**
+ * Client logo wall — client direction (14 July 2026): show logos only, no
+ * individual company write-ups; famous/major client logos are sufficient.
+ * Logos are being compiled by the client (Tikky). Add entries as
+ * { name, image } once official files are supplied — tiles render
+ * automatically; until then the section shows labelled placeholder tiles.
+ */
+export interface ClientLogo {
+  name: string
+  image: string
+}
+
+export const clientLogos: ClientLogo[] = [
+  // TODO: Populate with client-supplied logo files, e.g.:
+  // { name: 'Client name', image: '/images/clients/client-name.png' },
+]

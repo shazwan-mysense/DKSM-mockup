@@ -1,8 +1,12 @@
 import { useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { asset } from '../lib/asset'
 import { useBreadcrumbSchema, usePageMeta } from '../lib/meta'
 import { useInView } from '../lib/motion'
 import { faqCategories } from '../data/faqs'
 import { articles } from '../data/articles'
+import { news } from '../data/news'
+import { credentials } from '../data/credentials'
 import FaqAccordion from '../components/FaqAccordion'
 import { Breadcrumbs, CTABlock, PageHero, SectionHeading } from '../components/primitives'
 
@@ -36,8 +40,8 @@ function FaqSection() {
     <section className="bg-paper py-20 md:py-28">
       <div className="shell" ref={ref}>
         <SectionHeading
-          eyebrow="Frequently asked questions"
-          title="Straight answers on MEP and fire protection"
+          eyebrow="General FAQs"
+          title="Straight answers on fire protection and MEP"
           lead="Grouped by topic — or search across everything. If your question is not here, ask the engineering team directly."
         />
 
@@ -126,7 +130,7 @@ function Articles() {
     <section className="grid-lines bg-ink py-20 text-white md:py-28">
       <div className="shell" ref={ref}>
         <SectionHeading
-          eyebrow="Guides & resources"
+          eyebrow="Guides & education — fire protection and MEP"
           title="Short reads for facility owners and managers"
           lead="Practical notes from the field — each one expands in place, and each will grow into a full resource over time."
           dark
@@ -173,11 +177,107 @@ function Articles() {
   )
 }
 
+/* ------------------------------------------------------------------ */
+/* Company news — honest empty state until real announcements exist     */
+/* ------------------------------------------------------------------ */
+function CompanyNews() {
+  const [openId, setOpenId] = useState<string | null>(null)
+  const ref = useInView<HTMLDivElement>()
+  return (
+    <section className="rule-t bg-white py-20 md:py-24">
+      <div className="shell" ref={ref}>
+        <SectionHeading
+          eyebrow="Company news"
+          title="News and announcements"
+          lead="Updates from DKSM Group — announcements, project milestones and notices will be published here."
+        />
+        {news.length === 0 ? (
+          <div className="reveal mt-10 rounded-[4px] border border-line bg-paper p-8">
+            <p className="max-w-2xl text-[14.5px] leading-relaxed text-steel">
+              No announcements published yet — DKSM’s first company news will appear here. Major updates can
+              also be surfaced on the homepage when needed.
+            </p>
+          </div>
+        ) : (
+          <div className="mt-10 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+            {news.map((n) => {
+              const open = openId === n.id
+              return (
+                <article key={n.id} className={`reveal flex flex-col rounded-[4px] border border-line bg-paper p-7 ${open ? 'md:col-span-2 lg:col-span-3' : ''}`}>
+                  <p className="tech-label text-steel">
+                    {new Date(n.date).toLocaleDateString('en-MY', { day: 'numeric', month: 'long', year: 'numeric' })}
+                  </p>
+                  <h3 className="mt-3 font-display text-[18px] font-bold leading-snug text-ink">{n.title}</h3>
+                  <p className="mt-3 text-[13.5px] leading-relaxed text-steel">{n.summary}</p>
+                  {open && (
+                    <div className="mt-6 max-w-3xl space-y-4 border-t border-line pt-6 text-[14.5px] leading-relaxed text-graphite/90">
+                      {n.body.map((p) => (
+                        <p key={p.slice(0, 32)}>{p}</p>
+                      ))}
+                    </div>
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => setOpenId(open ? null : n.id)}
+                    aria-expanded={open}
+                    className="tech-label mt-6 flex min-h-10 items-center gap-2 self-start text-brand transition-colors hover:text-brand-deep"
+                  >
+                    {open ? 'Close' : 'Read announcement'}
+                  </button>
+                </article>
+              )
+            })}
+          </div>
+        )}
+      </div>
+    </section>
+  )
+}
+
+/* ------------------------------------------------------------------ */
+/* Awards & recognition                                                 */
+/* ------------------------------------------------------------------ */
+function Awards() {
+  const awards = credentials.filter((c) => c.category === 'Award')
+  const ref = useInView<HTMLDivElement>()
+  return (
+    <section className="rule-t bg-paper py-20 md:py-24">
+      <div className="shell" ref={ref}>
+        <SectionHeading
+          eyebrow="Awards, recognition & acknowledgement"
+          title="Recognised along the way"
+          lead="Recognition received by DKSM Group companies — award details are being confirmed for publication."
+        />
+        <ul className="mt-10 grid max-w-3xl gap-3 sm:grid-cols-2">
+          {awards.map((a) => (
+            <li key={a.id} className="reveal flex items-center gap-5 rounded-[4px] border border-line bg-white p-6">
+              <span className="flex h-16 w-20 shrink-0 items-center justify-center rounded-[3px] border border-line bg-white p-2">
+                <img src={asset(a.image)} alt="" loading="lazy" className="max-h-full max-w-full object-contain" />
+              </span>
+              <div>
+                <p className="font-display text-[15px] font-bold leading-snug text-ink">{a.name}</p>
+                <p className="mt-0.5 text-[12.5px] leading-snug text-steel">{a.org}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+        <p className="reveal mt-8 text-[14px] text-steel">
+          Registrations and memberships are listed on the{' '}
+          <Link to="/about#credentials" className="text-brand underline decoration-brand/30 underline-offset-4 hover:decoration-brand">
+            About page
+          </Link>
+          .
+        </p>
+      </div>
+    </section>
+  )
+}
+
 export default function Knowledge() {
   usePageMeta({
-    title: 'Knowledge Centre — MEP & Fire Protection FAQs | DKSM Group',
+    title: 'Knowledge Centre — Fire Protection & MEP Guides | DKSM Group',
     description:
-      'Answers on fire-protection systems, MEP coordination, maintenance and Malaysian authority processes, with practical guides for facility teams.',
+      'Guides, company news and FAQs on fire protection, MEP, maintenance and Malaysian authority processes — from DKSM Group’s engineering team.',
     path: '/knowledge',
   })
   useBreadcrumbSchema(BREADCRUMB)
@@ -189,11 +289,13 @@ export default function Knowledge() {
         imageAlt=""
         eyebrow="Knowledge Centre"
         title="Understand Your Systems Before You Buy Them"
-        lead="What MEP and fire-protection work involves, how maintenance and approvals actually run, and what to prepare — explained without the sales pitch."
+        lead="Guides, company news and straight answers on fire protection and MEP — how maintenance and approvals actually run, and what to prepare."
       />
       <Breadcrumbs items={BREADCRUMB} />
-      <FaqSection />
       <Articles />
+      <CompanyNews />
+      <FaqSection />
+      <Awards />
       <CTABlock
         heading="Question not answered here?"
         text="Send it to DKSM’s engineering team — practical questions get practical answers."

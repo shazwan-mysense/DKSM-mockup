@@ -1,5 +1,6 @@
 /**
  * Industries served, from the client's current website.
+ * Client direction (14 July 2026): healthcare and oil/gas/energy removed.
  * `concerns` describes typical engineering considerations per sector —
  * it does NOT claim DKSM completed specific projects in that sector
  * unless confirmed project references are added later.
@@ -38,16 +39,6 @@ export const industries: Industry[] = [
     span: 'std',
   },
   {
-    id: 'healthcare',
-    title: 'Healthcare Facilities',
-    short: 'Hospitals and clinics with stringent regulatory requirements for both MEP systems and fire safety.',
-    concerns:
-      'Healthcare premises combine continuous operation, medical gases, critical power and vulnerable occupants. Redundancy, documentation and strict compliance are basic requirements, not extras.',
-    image: '/images/industries/healthcare.webp',
-    imageAlt: 'Modern hospital corridor',
-    span: 'std',
-  },
-  {
     id: 'education',
     title: 'Educational Institutions',
     short: 'Schools and universities where dependable engineering systems underpin daily operations.',
@@ -75,7 +66,7 @@ export const industries: Industry[] = [
       'Transit facilities run long hours with high occupancy and strict authority oversight. Systems must be engineered for durability, clear evacuation strategies and maintainability without disrupting operations.',
     image: '/images/industries/transport.webp',
     imageAlt: 'Airport terminal interior',
-    span: 'tall',
+    span: 'std',
   },
   {
     id: 'data-centres',
@@ -85,16 +76,6 @@ export const industries: Industry[] = [
       'Data halls demand precision cooling, clean-agent or specialised suppression and absolute discipline around uptime. Every intervention is planned, documented and tested against failover procedures.',
     image: '/images/industries/data-centres.webp',
     imageAlt: 'Data centre server racks',
-    span: 'std',
-  },
-  {
-    id: 'energy',
-    title: 'Oil, Gas & Energy',
-    short: 'High-risk environments demanding specialist fire-protection design and engineering expertise.',
-    concerns:
-      'Energy facilities carry process hazards that ordinary building systems are not designed for. Fire-protection design, equipment selection and documentation must meet the sector’s far stricter regimes.',
-    image: '/images/industries/energy.webp',
-    imageAlt: 'Oil and gas facility piping',
     span: 'wide',
   },
 ]
