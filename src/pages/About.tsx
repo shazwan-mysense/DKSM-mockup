@@ -207,21 +207,25 @@ function SafetyQuality() {
 function Leadership() {
   const [openId, setOpenId] = useState<string | null>(null)
   const ref = useInView<HTMLDivElement>(0.03)
-  const tiers: TeamMember['tier'][] = ['Top management', 'Key management']
+  const tiers: { tier: TeamMember['tier']; cols: string; span: string; portrait: string; nameSize: string }[] = [
+    { tier: 'Top management', cols: 'md:grid-cols-3', span: 'md:col-span-3', portrait: 'h-36 w-36', nameSize: 'text-[21px]' },
+    { tier: 'Key management', cols: 'md:grid-cols-2', span: 'md:col-span-2', portrait: 'h-28 w-28', nameSize: 'text-[19px]' },
+  ]
 
   return (
-    <section className="rule-t bg-paper py-20 md:py-28">
+    <section className="grid-lines bg-ink py-20 text-white md:py-28">
       <div className="shell" ref={ref}>
         <SectionHeading
           eyebrow="The people behind DKSM Group"
           title="Led by the people who built it"
           lead="The group’s leadership pairs founding experience in fire protection with decades of construction, operations and servicing practice."
+          dark
         />
 
-        {tiers.map((tier) => (
-          <div key={tier} className="mt-10">
-            <h3 className="tech-label text-brand">{tier}</h3>
-            <div className="mt-4 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+        {tiers.map(({ tier, cols, span, portrait, nameSize }) => (
+          <div key={tier} className="mt-12">
+            <h3 className="tech-label text-white/60">{tier}</h3>
+            <div className={`mt-4 grid gap-3 ${cols}`}>
               {team
                 .filter((m) => m.tier === tier)
                 .map((m) => {
@@ -229,31 +233,27 @@ function Leadership() {
                   return (
                     <article
                       key={m.id}
-                      className={`reveal flex flex-col rounded-[4px] border border-line bg-white p-7 ${open ? 'md:col-span-2 lg:col-span-3' : ''}`}
+                      className={`reveal flex flex-col items-center rounded-[4px] border border-white/10 bg-white/[0.03] p-8 text-center transition-colors duration-300 hover:border-white/25 ${open ? span : ''}`}
                     >
-                      <div className="flex items-center gap-5">
-                        <img
-                          src={asset(m.image)}
-                          alt={`${m.name}, ${m.role}`}
-                          loading="lazy"
-                          className="h-20 w-20 shrink-0 rounded-full border border-line bg-white object-cover"
-                        />
-                        <div>
-                          <h4 className="font-display text-[17px] font-bold leading-snug text-ink">{m.name}</h4>
-                          <p className="tech-label mt-0.5 text-brand">{m.role}</p>
-                        </div>
-                      </div>
-                      <p className="mt-4 flex-1 text-[13.5px] leading-relaxed text-steel">{m.summary}</p>
+                      <img
+                        src={asset(m.image)}
+                        alt={`${m.name}, ${m.role}`}
+                        loading="lazy"
+                        className={`${portrait} rounded-full bg-white object-cover ring-1 ring-white/25`}
+                      />
+                      <h4 className={`mt-6 font-display ${nameSize} font-bold leading-snug text-white`}>{m.name}</h4>
+                      <p className="tech-label mt-1 text-brand-bright">{m.role}</p>
+                      <p className="mt-4 max-w-sm text-[13.5px] leading-relaxed text-white/60">{m.summary}</p>
                       {open && (
-                        <div className="mt-5 max-w-3xl space-y-4 border-t border-line pt-5 text-[14px] leading-relaxed text-graphite/90">
+                        <div className="mt-6 w-full max-w-3xl space-y-4 border-t border-white/10 pt-6 text-left text-[14px] leading-relaxed text-white/75">
                           {m.bio.map((para) => (
                             <p key={para.slice(0, 24)}>{para}</p>
                           ))}
                           {m.appointments && (
-                            <ul className="space-y-1.5 pt-1 text-[13px] leading-relaxed text-steel">
+                            <ul className="space-y-1.5 pt-1 text-[13px] leading-relaxed text-white/55">
                               {m.appointments.map((r) => (
                                 <li key={r} className="flex gap-2.5">
-                                  <span aria-hidden="true" className="mt-[7px] h-1.5 w-1.5 shrink-0 rotate-45 bg-brand" />
+                                  <span aria-hidden="true" className="mt-[7px] h-1.5 w-1.5 shrink-0 rotate-45 bg-brand-bright" />
                                   {r}
                                 </li>
                               ))}
@@ -265,7 +265,7 @@ function Leadership() {
                         type="button"
                         onClick={() => setOpenId(open ? null : m.id)}
                         aria-expanded={open}
-                        className="tech-label mt-5 flex min-h-10 items-center gap-2 self-start text-brand transition-colors hover:text-brand-deep"
+                        className="tech-label mt-6 flex min-h-10 items-center gap-2 text-brand-bright transition-colors hover:text-white"
                       >
                         {open ? 'Close' : `More about ${m.name.split(' ')[0]}`}
                         <svg
@@ -285,8 +285,22 @@ function Leadership() {
             </div>
           </div>
         ))}
+      </div>
+    </section>
+  )
+}
 
-        <div className="mt-14 grid gap-3 sm:grid-cols-3">
+function TeamOnSite() {
+  const ref = useInView<HTMLDivElement>()
+  return (
+    <section className="rule-t bg-paper py-20 md:py-28">
+      <div className="shell" ref={ref}>
+        <SectionHeading
+          eyebrow="On site"
+          title="Backed by the teams doing the work"
+          lead="Behind the leadership sit the engineers, supervisors and technicians who plan the work, run the sites and keep systems serviced years after commissioning."
+        />
+        <div className="mt-12 grid gap-3 sm:grid-cols-3">
           {[
             ['/images/people/team-drawings.webp', 'Engineers coordinating against the drawings before work begins'],
             ['/images/people/site-briefing.webp', 'Toolbox briefings keep every trade aligned on the day’s works'],
@@ -384,11 +398,12 @@ export default function About() {
       />
       <Breadcrumbs items={BREADCRUMB} />
       <Story />
+      <Leadership />
       <Timeline />
       <MissionValues />
       <HowWeWork />
       <SafetyQuality />
-      <Leadership />
+      <TeamOnSite />
       <Credentials />
       <CTABlock
         heading="Get to know DKSM on your own project"
