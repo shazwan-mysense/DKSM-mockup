@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Host is the group's existing domain; confirm before launch. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://dksm.com.my/</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://dksm.com.my/about</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dksm.com.my/services</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dksm.com.my/projects</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dksm.com.my/knowledge</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dksm.com.my/contact</loc>
+    <priority>0.9</priority>
+  </url>
+</urlset>

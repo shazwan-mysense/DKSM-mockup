@@ -1,0 +1,6 @@
+# DKSM Group — robots
+# Host is the group's existing domain; confirm before launch.
+User-agent: *
+Allow: /
+
+Sitemap: https://dksm.com.my/sitemap.xml
