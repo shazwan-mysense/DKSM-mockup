@@ -83,7 +83,8 @@ export const services: Service[] = [
     intro:
       'Fire-protection and MEP systems only earn their keep if they work on the day they are needed. DKSM builds maintenance programmes around each facility’s systems, usage and compliance obligations.',
     coverage: [
-      'Preventive maintenance programmes',
+      'Preventive maintenance programmes and maintenance plans',
+      'Building maintenance',
       'Scheduled inspections and servicing',
       'Troubleshooting and fault diagnosis',
       'Corrective maintenance and repairs',
@@ -106,7 +107,9 @@ export const services: Service[] = [
       'Systems are only as dependable as the people operating them. DKSM delivers practical training so building teams know their systems, their duties and their emergency procedures.',
     coverage: [
       'System operation training for facility teams',
+      'Fire-extinguisher training',
       'Fire-safety awareness programmes',
+      'Emergency response planning',
       'Equipment familiarisation sessions',
       'Maintenance guidance for in-house technicians',
       'Practical, hands-on technical instruction',
@@ -125,7 +128,8 @@ export const services: Service[] = [
     coverage: [
       'Documentation coordination and preparation',
       'Submission support to the relevant authorities',
-      'Inspection preparation and attendance',
+      'BOMBA inspection preparation and attendance',
+      'Insurance audit support',
       'Compliance coordination across disciplines',
       'Guidance through the applicable approval procedures',
     ],
@@ -135,18 +139,28 @@ export const services: Service[] = [
 ]
 
 /**
- * System and product categories relevant to DKSM's scope.
- * TODO: Confirm final category list and add official product brands with
- * client before launch — brand names are intentionally left out until
- * distributorships are confirmed in writing.
+ * Fire-protection systems in DKSM's scope — supplied, installed, serviced
+ * and maintained, as listed in the company profile provided by the client
+ * (28 July 2026).
  */
-export const productCategories = [
-  { title: 'Fire-detection systems', text: 'Alarm panels, detectors and notification devices.' },
-  { title: 'Fire-suppression systems', text: 'Sprinkler, hose reel, hydrant and suppression equipment.' },
-  { title: 'Pumps & water-based fire systems', text: 'Fire pumps, risers and water storage arrangements.' },
+export const fireSystems = [
+  { title: 'Fire alarm systems', text: 'Detection, alarm panels and notification devices.' },
+  { title: 'Sprinkler systems', text: 'Automatic sprinkler protection for buildings and plants.' },
+  { title: 'Hydrant systems', text: 'External and internal hydrant coverage.' },
+  { title: 'Pressurized hydrant systems', text: 'Pumped hydrant systems for demanding sites.' },
+  { title: 'Hose reel systems', text: 'First-response hose reels at riser points.' },
+  { title: 'Wet riser systems', text: 'Riser mains serving upper floors.' },
+  { title: 'Clean agent systems', text: 'Gas-based suppression for sensitive spaces.' },
+  { title: 'SPKA / iSCADA systems', text: 'Automated fire-alarm monitoring and supervision.' },
+  { title: 'Fire extinguishers', text: 'Portable extinguishers, supplied and serviced.' },
+  { title: 'Emergency lighting', text: 'Emergency luminaires for evacuation routes.' },
+  { title: 'KELUAR signage', text: 'Exit signage to Malaysian requirements.' },
+] as const
+
+/** Supporting MEP system categories. */
+export const mepSystems = [
   { title: 'Mechanical systems', text: 'Ventilation, air-conditioning and mechanical plant.' },
   { title: 'Electrical systems', text: 'Distribution, wiring and power for building services.' },
   { title: 'Plumbing systems', text: 'Water supply, sanitary and drainage services.' },
   { title: 'Monitoring & control equipment', text: 'Panels, sensors and supervision equipment.' },
-  { title: 'Safety-related engineering products', text: 'Extinguishers, signage and safety equipment.' },
 ] as const

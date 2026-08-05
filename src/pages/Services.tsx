@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useBreadcrumbSchema, usePageMeta } from '../lib/meta'
 import { useInView } from '../lib/motion'
-import { productCategories, services } from '../data/services'
+import { fireSystems, mepSystems, services } from '../data/services'
 import type { Service } from '../data/services'
 import ProcessFlow from '../components/ProcessFlow'
 import { Breadcrumbs, CTABlock, PageHero, SectionHeading, SmartImage } from '../components/primitives'
@@ -82,20 +82,30 @@ function ServiceSection({ service, flip }: { service: Service; flip: boolean }) 
   )
 }
 
-function ProductCategories() {
+function SystemsCatalogue() {
   const ref = useInView<HTMLDivElement>(0.05)
+  const card = 'reveal bg-ink p-6'
   return (
     <section className="grid-lines bg-ink py-20 text-white md:py-28">
       <div className="shell" ref={ref}>
         <SectionHeading
-          eyebrow="Systems & product categories"
-          title="The systems DKSM designs, supplies and services"
-          lead="Editable categories — specific brands and models are added as distributorships are confirmed."
+          eyebrow="Systems we cover"
+          title="Fire-protection systems — supplied, installed, serviced and maintained"
+          lead="The systems in DKSM’s day-to-day scope, as listed in the company profile — with the MEP disciplines that support them."
           dark
         />
         <ul className="mt-12 grid gap-px overflow-hidden rounded-[4px] border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
-          {productCategories.map((p) => (
-            <li key={p.title} className="reveal bg-ink p-6">
+          {fireSystems.map((p) => (
+            <li key={p.title} className={card}>
+              <h3 className="font-display text-[15.5px] font-bold">{p.title}</h3>
+              <p className="mt-2 text-[13px] leading-relaxed text-white/55">{p.text}</p>
+            </li>
+          ))}
+        </ul>
+        <h3 className="tech-label mt-12 text-white/60">MEP systems</h3>
+        <ul className="mt-4 grid gap-px overflow-hidden rounded-[4px] border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
+          {mepSystems.map((p) => (
+            <li key={p.title} className={card}>
               <h3 className="font-display text-[15.5px] font-bold">{p.title}</h3>
               <p className="mt-2 text-[13px] leading-relaxed text-white/55">{p.text}</p>
             </li>
@@ -134,7 +144,7 @@ export default function Services() {
         ))}
       </div>
 
-      <ProductCategories />
+      <SystemsCatalogue />
 
       {/* Delivery workflow */}
       <section className="bg-paper py-20 md:py-28">

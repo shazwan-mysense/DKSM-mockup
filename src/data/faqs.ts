@@ -45,7 +45,7 @@ export const faqCategories: FaqCategory[] = [
     faqs: [
       {
         q: 'What is included in a fire-protection system?',
-        a: 'A building’s fire protection typically combines detection (detectors, alarm panels, notification devices), suppression (sprinklers, hose reels, hydrants, extinguishers or special suppression systems), and passive measures such as compartmentation. The exact combination depends on the building’s use, size and the requirements applied to it.',
+        a: 'A building’s fire protection typically combines detection and alarm (fire-alarm panels, detectors and SPKA/iSCADA monitoring), suppression (sprinkler, hydrant and pressurized-hydrant, hose reel, wet riser and clean-agent systems, plus portable extinguishers), and life-safety provisions such as emergency lighting and KELUAR signage. The exact combination depends on the building’s use, size and the requirements applied to it.',
       },
       {
         q: 'How often should fire-protection systems be inspected?',
