@@ -204,6 +204,12 @@ commercial use without attribution; sources are recorded here for provenance.
 | `projects/fp-switchgear.webp` | [Pexels](https://www.pexels.com/photo/industrial-electrical-control-room-interior-33706880/) |
 | `projects/fp-chiller.webp` (+ `projects/featured.webp`) | [Pexels](https://www.pexels.com/photo/industrial-air-compressor-system-in-plant-31257317/) |
 | `projects/fp-ducting.webp` | [Pexels](https://www.pexels.com/photo/industrial-interior-with-exposed-hvac-ductwork-30749458/) |
+| `systems/fire-alarm.webp` | [Pexels](https://www.pexels.com/photo/a-red-and-black-fire-alarm-control-13060860/) |
+| `systems/hydrant.webp` | [Pexels](https://www.pexels.com/photo/red-fire-hydrant-on-city-street-in-sunlight-6481932/) |
+| `systems/wet-riser.webp` | [Pexels](https://www.pexels.com/photo/industrial-pipes-with-colorful-valves-against-a-wall-29248902/) |
+| `systems/extinguisher.webp` | [Pexels](https://www.pexels.com/photo/red-fire-extinguisher-against-wall-4805958/) |
+| `systems/emergency-lighting.webp` | [Pexels](https://www.pexels.com/photo/emergency-exit-signage-1871343/) |
+| `systems/keluar.webp` | [Pexels](https://www.pexels.com/photo/illuminated-green-exit-sign-23523335/) |
 
 ## Information still requiring client confirmation
 

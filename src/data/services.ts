@@ -144,17 +144,17 @@ export const services: Service[] = [
  * (28 July 2026).
  */
 export const fireSystems = [
-  { title: 'Fire alarm systems', text: 'Detection, alarm panels and notification devices.' },
-  { title: 'Sprinkler systems', text: 'Automatic sprinkler protection for buildings and plants.' },
-  { title: 'Hydrant systems', text: 'External and internal hydrant coverage.' },
-  { title: 'Pressurized hydrant systems', text: 'Pumped hydrant systems for demanding sites.' },
-  { title: 'Hose reel systems', text: 'First-response hose reels at riser points.' },
-  { title: 'Wet riser systems', text: 'Riser mains serving upper floors.' },
-  { title: 'Clean agent systems', text: 'Gas-based suppression for sensitive spaces.' },
-  { title: 'SPKA / iSCADA systems', text: 'Automated fire-alarm monitoring and supervision.' },
-  { title: 'Fire extinguishers', text: 'Portable extinguishers, supplied and serviced.' },
-  { title: 'Emergency lighting', text: 'Emergency luminaires for evacuation routes.' },
-  { title: 'KELUAR signage', text: 'Exit signage to Malaysian requirements.' },
+  { title: 'Fire alarm systems', text: 'Detection, alarm panels and notification devices.', image: '/images/systems/fire-alarm.webp', imageAlt: 'Break-glass fire alarm call point on a wall' },
+  { title: 'Sprinkler systems', text: 'Automatic sprinkler protection for buildings and plants.', image: '/images/projects/fp-sprinkler.webp', imageAlt: 'Fire sprinkler head at ceiling level' },
+  { title: 'Hydrant systems', text: 'External and internal hydrant coverage.', image: '/images/systems/hydrant.webp', imageAlt: 'Red pillar fire hydrant' },
+  { title: 'Pressurized hydrant systems', text: 'Pumped hydrant systems for demanding sites.', image: '/images/projects/fp-pumproom.webp', imageAlt: 'Fire pump set and main pipework' },
+  { title: 'Hose reel systems', text: 'First-response hose reels at riser points.', image: '/images/projects/fp-alarm.webp', imageAlt: 'Hose reel and fire extinguisher station' },
+  { title: 'Wet riser systems', text: 'Riser mains serving upper floors.', image: '/images/systems/wet-riser.webp', imageAlt: 'Fire main pipework with control valves' },
+  { title: 'Clean agent systems', text: 'Gas-based suppression for sensitive spaces.', image: '/images/projects/gallery-data.webp', imageAlt: 'Data-centre white space protected by clean-agent suppression' },
+  { title: 'SPKA / iSCADA systems', text: 'Automated fire-alarm monitoring and supervision.', image: '/images/projects/fp-switchgear.webp', imageAlt: 'Control-room panels for system monitoring' },
+  { title: 'Fire extinguishers', text: 'Portable extinguishers, supplied and serviced.', image: '/images/systems/extinguisher.webp', imageAlt: 'Serviced fire extinguisher with inspection record' },
+  { title: 'Emergency lighting', text: 'Emergency luminaires for evacuation routes.', image: '/images/systems/emergency-lighting.webp', imageAlt: 'Caged emergency exit luminaire' },
+  { title: 'KELUAR signage', text: 'Exit signage to Malaysian requirements.', image: '/images/systems/keluar.webp', imageAlt: 'Illuminated running-man exit sign' },
 ] as const
 
 /** Supporting MEP system categories. */

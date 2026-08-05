@@ -83,31 +83,37 @@ function ServiceSection({ service, flip }: { service: Service; flip: boolean }) 
 }
 
 function SystemsCatalogue() {
-  const ref = useInView<HTMLDivElement>(0.05)
-  const card = 'reveal bg-ink p-6'
+  const ref = useInView<HTMLDivElement>(0.03)
   return (
-    <section className="grid-lines bg-ink py-20 text-white md:py-28">
+    <section className="rule-t bg-white py-20 md:py-28">
       <div className="shell" ref={ref}>
         <SectionHeading
           eyebrow="Systems we cover"
           title="Fire-protection systems — supplied, installed, serviced and maintained"
           lead="The systems in DKSM’s day-to-day scope, as listed in the company profile — with the MEP disciplines that support them."
-          dark
         />
-        <ul className="mt-12 grid gap-px overflow-hidden rounded-[4px] border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-12 grid gap-px overflow-hidden rounded-[4px] border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
           {fireSystems.map((p) => (
-            <li key={p.title} className={card}>
-              <h3 className="font-display text-[15.5px] font-bold">{p.title}</h3>
-              <p className="mt-2 text-[13px] leading-relaxed text-white/55">{p.text}</p>
+            <li key={p.title} className="reveal group flex flex-col bg-white">
+              <SmartImage
+                src={p.image}
+                alt={p.imageAlt}
+                ratio="16/10"
+                imgClassName="transition-transform duration-700 group-hover:scale-[1.04]"
+              />
+              <div className="flex flex-1 flex-col p-5">
+                <h3 className="font-display text-[15.5px] font-bold text-ink">{p.title}</h3>
+                <p className="mt-1.5 text-[13px] leading-relaxed text-steel">{p.text}</p>
+              </div>
             </li>
           ))}
         </ul>
-        <h3 className="tech-label mt-12 text-white/60">MEP systems</h3>
-        <ul className="mt-4 grid gap-px overflow-hidden rounded-[4px] border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
+        <h3 className="tech-label mt-12 text-steel">Supported by the MEP disciplines</h3>
+        <ul className="mt-4 grid gap-px overflow-hidden rounded-[4px] border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
           {mepSystems.map((p) => (
-            <li key={p.title} className={card}>
-              <h3 className="font-display text-[15.5px] font-bold">{p.title}</h3>
-              <p className="mt-2 text-[13px] leading-relaxed text-white/55">{p.text}</p>
+            <li key={p.title} className="reveal bg-white p-5">
+              <h3 className="font-display text-[15px] font-bold text-ink">{p.title}</h3>
+              <p className="mt-1.5 text-[13px] leading-relaxed text-steel">{p.text}</p>
             </li>
           ))}
         </ul>
